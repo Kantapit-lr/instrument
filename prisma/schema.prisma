@@ -1,0 +1,450 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "./generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+/// ENUMS
+enum HistoryActionType {
+  CAL
+  PM
+  TRANSFER
+  MANUAL
+}
+
+enum InstrumentType {
+  BALANCE
+  TEMPERATURE
+  PIPETTE
+}
+
+enum CalibrationResult {
+  PASS
+  NOT_PASS
+}
+
+
+/// MODELS
+model User {
+  userId   Int    @id @default(autoincrement())
+  username String @unique
+
+  firstName String
+  lastName  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  profileSavers ProfileSaver[]
+}
+
+model Project {
+  projectId Int    @id @default(autoincrement())
+  name      String @unique
+  nickName  String @unique
+
+  profiles         Profile[]
+  contacts         Contact[]
+  maintenancePlans MaintenancePlan[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Department {
+  departmentId Int    @id @default(autoincrement())
+  name         String @unique
+
+  contacts               Contact[]
+  maintenanceDetails     MaintenanceDetail[]
+  collaborationHistories CollaborationHistory[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Contact {
+  contactId Int @id @default(autoincrement())
+
+  departmentId Int?
+  projectId    Int?
+
+  contactType  String
+  contactValue String
+
+  department Department? @relation(fields: [departmentId], references: [departmentId])
+  project    Project?    @relation(fields: [projectId], references: [projectId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Profile {
+  registrationNumber String @id @db.VarChar(50)
+
+  projectId Int
+
+  name         String
+  brand        String?
+  model        String?
+  type InstrumentType
+  size         String?
+  serialNo     String?
+  manufacturer String?
+  vendor       String?  @db.VarChar(200) // ผู้จำหน่าย (nullable เพราะไม่ทุกเครื่องมีผู้จำหน่าย)
+  country      String?
+
+  price Decimal @db.Decimal(15, 2)
+
+  initialCondition String
+  fundingType      String
+  fundingTypeRemark String? // ใช้เมื่อ fundingType = "อื่นๆ" เพื่อระบุรายละเอียดเพิ่มเติม
+
+  location String
+
+  receivedDate DateTime
+  activeDate   DateTime
+
+  withdrawalDocumentNo String
+  recordedBy String
+  
+  disposed            Boolean   @default(false)
+  disposedDate        DateTime?
+  disposalDocument    String?
+  disposalApproveDate DateTime?
+
+  remark String? @db.Text
+
+  project Project @relation(fields: [projectId], references: [projectId])
+
+  histories              History[]
+  profileSavers          ProfileSaver[]
+  specialCharacteristics SpecialCharacteristic[]
+  requestDetails         RequestDetail[]
+  maintenanceDetails     MaintenanceDetail[]
+  images                 ProfileImage[]
+  calibrations           Calibration[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// รูปภาพของอุปกรณ์ 1 ชิ้นมีได้หลายรูป (gallery)
+// เก็บแค่ "ชื่อไฟล์" ในฐานข้อมูล ไม่เก็บตัวไฟล์จริง — ไฟล์จริงอยู่ในโฟลเดอร์ uploads/instruments/
+// ที่เครื่อง server (นอก public/) เพื่อให้ย้ายเครื่องได้พร้อมกับโฟลเดอร์โปรเจค
+model ProfileImage {
+  profileImageId Int @id @default(autoincrement())
+
+  registrationNumber String
+
+  fileName String // ชื่อไฟล์จริงบนดิสก์ (สุ่มไม่ซ้ำกัน) เช่น "a1b2c3.jpg"
+  sortOrder Int @default(0) // ลำดับการแสดงผลใน gallery
+
+  profile Profile @relation(fields: [registrationNumber], references: [registrationNumber], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+}
+
+model ProfileSaver {
+  profileSaverId Int @id @default(autoincrement())
+
+  registrationNumber String
+  userId             Int
+
+  savedAt DateTime
+
+  profile Profile @relation(fields: [registrationNumber], references: [registrationNumber])
+  user    User    @relation(fields: [userId], references: [userId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SpecialCharacteristic {
+  registrationNumber String
+  type               String
+  value              String
+  remark             String?
+
+  profile Profile @relation(fields: [registrationNumber], references: [registrationNumber])
+
+  @@id([registrationNumber, type])
+}
+
+model History {
+  historyId Int @id @default(autoincrement())
+
+  registrationNumber String
+
+  actionDate DateTime
+  actionType HistoryActionType
+
+  detail   String? @db.Text
+  operator String
+
+  remark String? @db.Text
+
+  profile Profile @relation(fields: [registrationNumber], references: [registrationNumber])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RequestList {
+  requestListId Int @id @default(autoincrement())
+
+  year Int
+
+  operator String
+  status   String
+
+  requestDetails   RequestDetail[]
+  maintenancePlans MaintenancePlan[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RequestDetail {
+  requestDetailId Int @id @default(autoincrement())
+
+  requestListId Int
+
+  registrationNumber String
+
+  operator String
+
+  requirementType String
+
+  frequency Int
+
+  usagePeriod String
+
+  acceptableTolerance Decimal @db.Decimal(8, 2)
+
+  remark String? @db.Text
+
+  requestList RequestList @relation(fields: [requestListId], references: [requestListId])
+
+  profile Profile @relation(fields: [registrationNumber], references: [registrationNumber])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MaintenancePlan {
+  maintenancePlanId Int @id @default(autoincrement())
+
+  requestListId Int?
+  projectId     Int?
+
+  year Int
+
+  operator String
+
+  reviewer String?
+
+  approvalStatus String
+  hiringStatus   String
+  processStatus  String
+
+  requestList RequestList? @relation(fields: [requestListId], references: [requestListId])
+  project     Project?     @relation(fields: [projectId], references: [projectId])
+
+  maintenanceDetails MaintenanceDetail[]
+  calibrations       Calibration[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model MaintenanceDetail {
+  maintenanceDetailId Int @id @default(autoincrement())
+
+  maintenancePlanId Int
+
+  registrationNumber String
+
+  departmentId Int?
+
+  status String
+
+  detail String
+
+  remark String? @db.Text
+
+  maintenancePlan MaintenancePlan @relation(fields: [maintenancePlanId], references: [maintenancePlanId])
+
+  profile Profile @relation(fields: [registrationNumber], references: [registrationNumber])
+
+  department Department? @relation(fields: [departmentId], references: [departmentId])
+
+  schedules Schedule[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Schedule {
+  scheduleId Int @id @default(autoincrement())
+
+  maintenanceDetailId Int
+
+  round Int
+
+  scheduledDate DateTime
+
+  maintenanceDetail MaintenanceDetail @relation(fields: [maintenanceDetailId], references: [maintenanceDetailId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SpecialSituation {
+  specialSituationId Int @id @default(autoincrement())
+
+  datetime DateTime
+
+  situation String @db.Text
+
+  reason String? @db.Text
+
+  recorder String
+
+  recorderContact String
+
+  remark String? @db.Text
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CollaborationHistory {
+  collaborationHistoryId Int @id @default(autoincrement())
+
+  departmentId Int
+
+  collaborationDate DateTime
+
+  detail String? @db.Text
+
+  result String? @db.Text
+
+  operator String?
+
+  remark String? @db.Text
+
+  department Department @relation(fields: [departmentId], references: [departmentId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ===============================================================
+// บันทึกการสอบเทียบเครื่องมือ
+// ===============================================================
+
+model Calibration {
+  calibrationId Int @id @default(autoincrement())
+
+  registrationNumber String
+  maintenancePlanId  Int
+
+  certificateNo String  @db.VarChar(100)
+  calibrationDate DateTime
+
+  isAccurate          Boolean // ความถูกต้อง
+  isDocumentComplete  Boolean // ความสมบูรณ์ของเอกสาร
+  isInstrumentComplete Boolean // ความสมบูรณ์ของเครื่องมือ
+
+  instrumentValue String  @db.VarChar(100) // ค่าเครื่องมือ
+  mpe             String  @db.VarChar(100) // Maximum Permissible Error
+
+  summaryResult CalibrationResult
+
+  operator     String?   @db.VarChar(100)
+  operatedAt   DateTime?
+  reviewer     String?   @db.VarChar(100)
+  reviewedAt   DateTime?
+
+  certificatePath String? @db.VarChar(200) // Path เก็บไฟล์ Certificate
+
+  profile         Profile         @relation(fields: [registrationNumber], references: [registrationNumber])
+  maintenancePlan MaintenancePlan @relation(fields: [maintenancePlanId], references: [maintenancePlanId])
+
+  resultBalances           ResultBalance[]
+  resultTemperatureSources ResultTemperatureSource[]
+  resultPipettes           ResultPipette[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ผลชั่งน้ำหนัก (ใช้กับ BALANCE)
+model ResultBalance {
+  resultBalanceId Int @id @default(autoincrement())
+
+  calibrationId Int
+
+  appliedWeight    Decimal @db.Decimal(10, 4) // น้ำหนักมาตรฐาน
+  balanceReading   Decimal @db.Decimal(10, 4) // ค่าที่อ่านได้จากเครื่องชั่ง
+  unit             String  @db.VarChar(100)   // หน่วยการวัด
+  correction       Decimal @db.Decimal(10, 4) // ค่าแก้
+  mu               Decimal @db.Decimal(10, 4) // ค่าความไม่แน่นอน
+  totalErrorMinus  Decimal @db.Decimal(10, 4) // ค่าความผิดพลาดลบ
+  totalErrorPlus   Decimal @db.Decimal(10, 4) // ค่าความผิดพลาดบวก
+  status           CalibrationResult
+
+  calibration Calibration @relation(fields: [calibrationId], references: [calibrationId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ผลอุณหภูมิแหล่งกำเนิด (ใช้กับ TEMPERATURE)
+model ResultTemperatureSource {
+  resultTemperatureId Int @id @default(autoincrement())
+
+  calibrationId Int
+
+  position                String  @db.VarChar(100)   // ตำแหน่งจุดวัด
+  standardReading         Decimal @db.Decimal(10, 4) // ค่าอ่านได้มาตรฐาน
+  unit                    String  @db.VarChar(100)   // หน่วยการวัด
+  mu                      Decimal @db.Decimal(10, 4) // ค่าความไม่แน่นอน
+  averageStandardReadingMc Decimal @db.Decimal(10, 4) // ค่าเฉลี่ยมาตรฐานที่อ่านได้
+  status                  CalibrationResult
+
+  calibration Calibration @relation(fields: [calibrationId], references: [calibrationId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ผลปิเปต (ใช้กับ PIPETTE)
+model ResultPipette {
+  resultPipetteId Int @id @default(autoincrement())
+
+  calibrationId Int
+
+  parameter          String  @db.VarChar(100)   // พารามิเตอร์การตรวจสอบ
+  pointOfCalibration String  @db.VarChar(100)   // จุดสอบเทียบ
+  unit               String  @db.VarChar(100)   // หน่วยการวัด
+  mpePercent         Decimal @db.Decimal(10, 4) // ค่า MPE เป็นเปอร์เซ็นต์
+  error              Decimal @db.Decimal(10, 4) // ค่าความผิดพลาดจากการวัด
+  ms                 Decimal @db.Decimal(10, 4) // ค่าความไม่แน่นอนจากการวัด
+  totalError         Decimal @db.Decimal(10, 4) // ค่าความผิดพลาด + ค่าความไม่แน่นอน
+  status             CalibrationResult
+
+  calibration Calibration @relation(fields: [calibrationId], references: [calibrationId])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

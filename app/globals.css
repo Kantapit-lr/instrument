@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+:root {
+  /* ==========================================================================
+     1. BRAND COLORS (ค่าสีดิบตาม CI มหาวิทยาลัย)
+     ========================================================================== */
+  --mahidol-blue: #1D4F91;
+  --mahidol-yellow: #F3C13A;
+  --mahidol-gold: #A8842C;
+  --mahidol-light-blue: #A9D3EA;
+  --mahidol-light-yellow: #EEE6B4;
+  --mahidol-light-brown: #B5A393;
+  --mahidol-dark-brown: #6D5315;
+  --mahidol-light-grey: #B7B8BD;
+  --mahidol-grey: #6F6F73;
+  --mahidol-dark-grey: #4F5256;
+
+  /* ==========================================================================
+     2. LIGHT THEME TOKENS (กำหนดว่าโหมดสว่างให้แต่ละส่วนใช้สีไหน)
+     ========================================================================== */
+  --background: #f4f6f8;          /* พื้นหลังแดชบอร์ดสีเทาอ่อนแบบในรูปตัวอย่าง */
+  --foreground: #171717;
+
+  --color-primary: var(--mahidol-blue);
+  
+  /* Sidebar (ในรูปตัวอย่างเป็นสีขาว/เทาอ่อนมาก) */
+  --color-sidebar: #ffffff;
+  --color-sidebar-text: var(--color-mahidol-dark-grey);  /* ตัวหนังสือใช้สีเทาเข้มของมหิดล */
+
+  /* Topbar */  
+  --color-topbar: #ffffff;
+  --color-topbar-text: #171717;
+
+  /* Card */
+  --color-card: #ffffff;
+  --color-card-text: #1a1a1a;
+  
+  /* Border */
+  --color-border: #e5e7eb;
+
+  /* Surface muted (พื้นหลังอ่อนกว่า card เล็กน้อย เช่น input, หัวตาราง) */
+  --color-surface-muted: #f9fafb;
+  --color-surface-muted-text: #4f5256;
+
+  /* Danger (ข้อความ error) */
+  --color-danger-bg: #fef2f2;
+  --color-danger-text: #b91c1c;
+  --color-danger-border: #fecaca;
+
+  /* Success (ข้อความสำเร็จ) */
+  --color-success-bg: #f0fdf4;
+  --color-success-text: #15803d;
+  --color-success-border: #bbf7d0;
+
+  /* Text muted (ตัวหนังสือรอง/ไอคอน/placeholder ที่ต้องสลับเฉดตามโหมด) */
+  --color-text-muted: var(--mahidol-grey);
+
+  /* Action text (ลิงก์ action เช่นปุ่มแก้ไข ต้องสว่างขึ้นในโหมดมืดไม่ให้กลืนพื้น) */
+  --color-action-text: var(--mahidol-blue);
+}
+
+/* ==========================================================================
+   3. DARK THEME TOKENS (สลับค่าของ Tokens เมื่อเป็นโหมดมืด)
+   ========================================================================== */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b0f19;          /* พื้นหลังมืดโทนน้ำเงินเข้ม/ดำ */
+    --foreground: #f3f4f6;
+
+    --color-primary: var(--mahidol-light-blue);
+
+    /* Sidebar ในโหมดมืด */
+    --color-sidebar: #111827;
+    --color-sidebar-text: var(--color-mahidol-light-grey);
+
+    /* Topbar ในโหมดมืด */
+    --color-topbar: #111827;
+    --color-topbar-text: #f3f4f6;
+
+    /* Card ในโหมดมืด */
+    --color-card: #1f2937;
+    --color-card-text: #ffffff;
+
+    /* Border ในโหมดมืด */
+    --color-border: #374151;
+
+    /* Surface muted ในโหมดมืด (เข้มกว่า card นิดหน่อยให้แยกชั้นกันได้) */
+    --color-surface-muted: #161e2e;
+    --color-surface-muted-text: #9ca3af;
+
+    /* Danger ในโหมดมืด */
+    --color-danger-bg: #2a1414;
+    --color-danger-text: #fca5a5;
+    --color-danger-border: #5c2626;
+
+    /* Success ในโหมดมืด */
+    --color-success-bg: #142a1a;
+    --color-success-text: #86efac;
+    --color-success-border: #265c36;
+
+    /* Text muted ในโหมดมืด */
+    --color-text-muted: var(--mahidol-light-grey);
+
+    /* Action text ในโหมดมืด ใช้ light-blue เพื่อให้เด่นไม่กลืนพื้นเข้ม */
+    --color-action-text: var(--mahidol-light-blue);
+  }
+}
+
+/* ==========================================================================
+   4. TAILWIND CONFIGURATION (ลงทะเบียนตัวแปรให้คลาส Tailwind รู้จัก)
+   ========================================================================== */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Brand Colors Utility */
+  --color-mahidol-blue: var(--mahidol-blue);
+  --color-mahidol-yellow: var(--mahidol-yellow);
+  --color-mahidol-gold: var(--mahidol-gold);
+  --color-mahidol-light-blue: var(--mahidol-light-blue);
+  --color-mahidol-light-yellow: var(--mahidol-light-yellow);
+  --color-mahidol-light-brown: var(--mahidol-light-brown);
+  --color-mahidol-dark-brown: var(--mahidol-dark-brown);
+  --color-mahidol-light-grey: var(--mahidol-light-grey);
+  --color-mahidol-grey: var(--mahidol-grey);
+  --color-mahidol-dark-grey: var(--mahidol-dark-grey);
+
+  /* Semantic Theme UI */
+  --color-primary: var(--color-primary);
+  --color-sidebar: var(--color-sidebar);
+  --color-sidebar-text: var(--color-sidebar-text);
+  --color-topbar: var(--color-topbar);
+  --color-topbar-text: var(--color-topbar-text);
+  --color-card: var(--color-card);
+  --color-card-text: var(--color-card-text);
+  --color-border: var(--color-border);
+  --color-surface-muted: var(--color-surface-muted);
+  --color-surface-muted-text: var(--color-surface-muted-text);
+  --color-danger-bg: var(--color-danger-bg);
+  --color-danger-text: var(--color-danger-text);
+  --color-danger-border: var(--color-danger-border);
+  --color-success-bg: var(--color-success-bg);
+  --color-success-text: var(--color-success-text);
+  --color-success-border: var(--color-success-border);
+  --color-text-muted: var(--color-text-muted);
+  --color-action-text: var(--color-action-text);
+
+  /* Typography */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Base Styles */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
