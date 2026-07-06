@@ -5,12 +5,9 @@ import {
   deleteInstrument,
 } from "@/services/instrumentService";
 import { InstrumentFormData } from "@/types/instrument";
+import { InstrumentRegistrationRouteParams } from "@/types/api";
 
-interface RouteParams {
-  params: Promise<{ registrationNumber: string }>;
-}
-
-export async function GET(request: NextRequest, { params }: RouteParams) {
+export async function GET(request: NextRequest, { params }: InstrumentRegistrationRouteParams) {
   try {
     const { registrationNumber } = await params;
     const instrument = await getInstrumentByRegistrationNumber(registrationNumber);
@@ -26,7 +23,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
   }
 }
 
-export async function PATCH(request: NextRequest, { params }: RouteParams) {
+export async function PATCH(request: NextRequest, { params }: InstrumentRegistrationRouteParams) {
   try {
     const { registrationNumber } = await params;
     const body: Omit<InstrumentFormData, "registrationNumber"> = await request.json();
@@ -55,7 +52,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: RouteParams) {
+export async function DELETE(request: NextRequest, { params }: InstrumentRegistrationRouteParams) {
   try {
     const { registrationNumber } = await params;
     await deleteInstrument(registrationNumber);

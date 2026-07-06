@@ -1,11 +1,5 @@
 import { prisma } from "@/lib/prisma";
-
-export interface ProjectListItem {
-  projectId: number;
-  name: string;
-  nickName: string;
-  profileCount: number; // จำนวนอุปกรณ์ที่ผูกกับโครงการนี้ ใช้เตือนก่อนลบ
-}
+import { ProjectListItem } from "@/types/project";
 
 // ดึงรายชื่อโครงการทั้งหมด พร้อมจำนวนอุปกรณ์ที่ผูกอยู่ (สำหรับหน้า /projects)
 export async function getAllProjects(): Promise<ProjectListItem[]> {

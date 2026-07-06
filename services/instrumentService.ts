@@ -56,11 +56,6 @@ export async function getAllInstruments() {
   return profiles.map(toListItem);
 }
 
-// ดึงข้อมูลเต็มของอุปกรณ์ 1 รายการ สำหรับหน้าแก้ไข (ต้องใช้ทุก field ของฟอร์ม)
-export async function getInstrumentByRegistrationNumber(registrationNumber: string) {
-  return prisma.profile.findUnique({ where: { registrationNumber } });
-}
-
 // สร้างอุปกรณ์ (Profile) ใหม่ในฐานข้อมูล
 // รับข้อมูลดิบจากฟอร์ม (ทุกอย่างเป็น string) แล้วแปลง type ให้ตรงกับ schema ก่อนบันทึก
 export async function createInstrument(data: InstrumentFormData) {
@@ -118,6 +113,10 @@ export async function updateInstrument(
     throw new Error("กรุณาเลือกประเภทอุปกรณ์");
   }
 
+  // เก็บใส่ตัวแปรใหม่หลังเช็คแล้ว เพราะ TS จำ narrowing ของ data.type (ที่เช็คไว้ข้างบน)
+  // ไม่ได้เมื่ออ้างอิงผ่าน closure ข้าม async callback ของ $transaction ด้านล่าง
+  const type = data.type;
+
   // SpecialCharacteristic ใช้ composite PK (registrationNumber, type)
   // วิธีง่ายสุดที่ถูกต้องคือ ลบทั้งหมดของอุปกรณ์นี้แล้วสร้างใหม่ใน transaction เดียวกัน
   return prisma.$transaction(async (tx) => {
@@ -127,7 +126,7 @@ export async function updateInstrument(
       where: { registrationNumber },
       data: {
         name: data.name,
-        type: data.type,
+        type,
         brand: data.brand || null,
         model: data.model || null,
         serialNo: data.serialNo || null,

@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { updateProject, deleteProject } from "@/services/projectService";
+import { ProjectIdRouteParams } from "@/types/api";
 
-interface RouteParams {
-  params: Promise<{ id: string }>;
-}
-
-export async function PATCH(request: NextRequest, { params }: RouteParams) {
+export async function PATCH(request: NextRequest, { params }: ProjectIdRouteParams) {
   try {
     const { id } = await params;
     const projectId = Number(id);
@@ -46,7 +43,7 @@ export async function PATCH(request: NextRequest, { params }: RouteParams) {
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: RouteParams) {
+export async function DELETE(request: NextRequest, { params }: ProjectIdRouteParams) {
   try {
     const { id } = await params;
     const projectId = Number(id);

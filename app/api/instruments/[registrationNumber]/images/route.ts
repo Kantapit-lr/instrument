@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { addProfileImage, getProfileImages } from "@/services/imageService";
+import { InstrumentRegistrationRouteParams } from "@/types/api";
 
-interface RouteParams {
-  params: Promise<{ registrationNumber: string }>;
-}
-
-export async function GET(request: NextRequest, { params }: RouteParams) {
+export async function GET(request: NextRequest, { params }: InstrumentRegistrationRouteParams) {
   try {
     const { registrationNumber } = await params;
     const images = await getProfileImages(registrationNumber);
@@ -16,7 +13,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
   }
 }
 
-export async function POST(request: NextRequest, { params }: RouteParams) {
+export async function POST(request: NextRequest, { params }: InstrumentRegistrationRouteParams) {
   try {
     const { registrationNumber } = await params;
 

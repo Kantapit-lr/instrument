@@ -1,4 +1,6 @@
-import { SelectOption } from "./instrument";
+import type { LucideIcon } from "lucide-react";
+import { SelectOption, InstrumentListItem, InstrumentFormData } from "./instrument";
+import { CalibrationScheduleRow } from "./dashboard";
 
 export interface FormInputProps {
   label: string;
@@ -22,4 +24,44 @@ export interface FormSelectProps {
   options: SelectOption[];
   placeholder?: string;
   required?: boolean;
+}
+
+export interface InstrumentGridProps {
+  instruments: InstrumentListItem[];
+  loading: boolean;
+  emptyMessage: string;
+}
+
+export interface CountryComboboxProps {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (value: string) => void;
+}
+
+export interface InstrumentFormProps {
+  formId: string;
+  mode?: "create" | "edit";
+  initialData?: InstrumentFormData;
+  onSubmitSuccess?: () => void;
+}
+
+export interface ImageGalleryProps {
+  registrationNumber: string;
+}
+
+export interface StatCardProps {
+  title: string;
+  value: string | number;
+  icon?: LucideIcon;
+}
+
+export interface GoalGaugeCardProps {
+  title: string;
+  percent: number;
+}
+
+export interface CalibrationScheduleCardProps {
+  title: string;
+  rows: CalibrationScheduleRow[];
 }

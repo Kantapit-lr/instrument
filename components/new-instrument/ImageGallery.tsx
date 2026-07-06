@@ -2,10 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { ProfileImageData, getImageUrl } from "@/types/image";
-
-interface ImageGalleryProps {
-  registrationNumber: string;
-}
+import { ImageGalleryProps } from "@/types/components";
 
 export function ImageGallery({ registrationNumber }: ImageGalleryProps) {
   const [images, setImages] = useState<ProfileImageData[]>([]);

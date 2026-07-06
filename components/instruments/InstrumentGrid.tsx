@@ -1,11 +1,5 @@
-import { InstrumentListItem } from "@/types/instrument";
+import { InstrumentGridProps } from "@/types/components";
 import { InstrumentCard } from "./InstrumentCard";
-
-interface InstrumentGridProps {
-  instruments: InstrumentListItem[];
-  loading: boolean;
-  emptyMessage: string;
-}
 
 export function InstrumentGrid({ instruments, loading, emptyMessage }: InstrumentGridProps) {
   if (loading) {

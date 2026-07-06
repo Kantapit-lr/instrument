@@ -9,6 +9,7 @@ import { CountryCombobox } from "./CountryCombobox";
 import { ImageGallery } from "./ImageGallery";
 import { emptyInstrumentForm, InstrumentFormData, SpecialCharacteristicInput } from "@/types/instrument";
 import { SelectOption } from "@/types/instrument";
+import { InstrumentFormProps } from "@/types/components";
 
 const INSTRUMENT_TYPE_OPTIONS: SelectOption[] = [
   { value: "BALANCE", label: "เครื่องชั่ง (Balance)" },
@@ -27,13 +28,6 @@ const FUNDING_TYPE_OPTIONS: SelectOption[] = [
   { value: "เงินงบประมาณ", label: "เงินงบประมาณ" },
   { value: "อื่นๆ", label: "อื่นๆ" },
 ];
-
-interface InstrumentFormProps {
-  formId: string;
-  mode?: "create" | "edit";
-  initialData?: InstrumentFormData;
-  onSubmitSuccess?: () => void;
-}
 
 export default function InstrumentForm({
   formId,

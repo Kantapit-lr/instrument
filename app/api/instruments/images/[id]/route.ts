@@ -1,11 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { deleteProfileImage } from "@/services/imageService";
+import { InstrumentImageIdRouteParams } from "@/types/api";
 
-interface RouteParams {
-  params: Promise<{ id: string }>;
-}
-
-export async function DELETE(request: NextRequest, { params }: RouteParams) {
+export async function DELETE(request: NextRequest, { params }: InstrumentImageIdRouteParams) {
   try {
     const { id } = await params;
     const profileImageId = Number(id);

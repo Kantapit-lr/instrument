@@ -2,10 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { readFile } from "fs/promises";
 import { existsSync } from "fs";
 import { getImageFilePath } from "@/services/imageService";
-
-interface RouteParams {
-  params: Promise<{ fileName: string }>;
-}
+import { UploadFileNameRouteParams } from "@/types/api";
 
 const MIME_TYPES: Record<string, string> = {
   ".jpg": "image/jpeg",
@@ -14,7 +11,7 @@ const MIME_TYPES: Record<string, string> = {
   ".webp": "image/webp",
 };
 
-export async function GET(request: NextRequest, { params }: RouteParams) {
+export async function GET(request: NextRequest, { params }: UploadFileNameRouteParams) {
   const { fileName } = await params;
 
   // กัน path traversal: ชื่อไฟล์ต้องไม่มี / หรือ .. เด็ดขาด

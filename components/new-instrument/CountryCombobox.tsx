@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { fieldClass, labelClass } from "./BaseInput";
+import { CountryComboboxProps } from "@/types/components";
 
 // รายชื่อประเทศที่ใช้บ่อยในงาน calibration/เครื่องมือวิทยาศาสตร์
 // เรียงตามความถี่การใช้งานในบริบทของไทย (ไทยก่อน ตามด้วยประเทศผู้ผลิตเครื่องมือหลัก)
@@ -27,13 +28,6 @@ const COUNTRIES = [
   "ไต้หวัน",
   "อินเดีย",
 ];
-
-interface CountryComboboxProps {
-  label: string;
-  name: string;
-  value: string;
-  onChange: (value: string) => void;
-}
 
 export function CountryCombobox({ label, name, value, onChange }: CountryComboboxProps) {
   const [inputValue, setInputValue] = useState(value);
