@@ -1,7 +1,7 @@
 export default function SidebarLogo() {
   return (
     <div className="h-16 flex items-center gap-3 px-2">
-      {/* ยังไม่ได้ใส่ไฟล์จริงๆ และ alt คือข้อความอธิบายรูปภาพ และ ช่วยเรื่อง Accessibility ด้วย */}
+      {/* alt คือข้อความอธิบายรูปภาพ และ ช่วยเรื่อง Accessibility ด้วย */}
       <img
         src="/images/MU.png"
         alt="Logo"

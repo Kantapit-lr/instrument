@@ -8,9 +8,10 @@ export default function SidebarMenu() {
 
   const menuItems = [
     { name: 'Dashboard', href: '/' },
-    { name: 'เพิ่มอุปกรณ์ใหม่', href: '/new-instrument' },
-    { name: 'อุปกรณ์ทั้งหมด', href: '/instruments' },
-    { name: 'จัดการโครงการ', href: '/projects' },
+    { name: 'New intrument', href: '/new-instrument' },
+    { name: 'Instruments', href: '/instruments' },
+    { name: 'Project', href: '/projects' },
+    { name: 'Annual Plan', href: '/annual-plans' },
   ];
 
   return (

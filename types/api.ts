@@ -16,3 +16,11 @@ export interface UploadFileNameRouteParams {
 export interface InstrumentRegistrationRouteParams {
   params: Promise<{ registrationNumber: string }>;
 }
+
+export interface RequestListIdRouteParams {
+  params: Promise<{ id: string }>;
+}
+
+export interface MaintenancePlanIdRouteParams {
+  params: Promise<{ id: string }>;
+}

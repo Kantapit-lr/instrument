@@ -56,6 +56,21 @@ export async function getAllInstruments() {
   return profiles.map(toListItem);
 }
 
+// ดึงรายชื่ออุปกรณ์แบบสั้น สำหรับ dropdown เลือกอุปกรณ์เข้าแผนรายปี (หน้า /annual-plans)
+// ถ้าระบุ projectId จะกรองเฉพาะอุปกรณ์ของโครงการนั้น (แผนรายปีเป็นของโครงการเดียวเท่านั้น)
+export async function getInstrumentOptions(projectId?: number) {
+  const profiles = await prisma.profile.findMany({
+    where: projectId ? { projectId } : undefined,
+    orderBy: { name: "asc" },
+    select: { registrationNumber: true, name: true },
+  });
+
+  return profiles.map((profile) => ({
+    value: profile.registrationNumber,
+    label: `${profile.name} (${profile.registrationNumber})`,
+  }));
+}
+
 // สร้างอุปกรณ์ (Profile) ใหม่ในฐานข้อมูล
 // รับข้อมูลดิบจากฟอร์ม (ทุกอย่างเป็น string) แล้วแปลง type ให้ตรงกับ schema ก่อนบันทึก
 export async function createInstrument(data: InstrumentFormData) {

@@ -11,15 +11,18 @@ import { InstrumentFormData } from "@/types/instrument";
 // GET /api/instruments?q=xxx             -> ค้นหา ไม่จำกัดผล (หน้า /instruments/search)
 // GET /api/instruments?q=xxx&limit=5     -> ค้นหา จำกัดผล (autocomplete dropdown)
 // GET /api/instruments?options=true      -> { value, label }[] สำหรับ dropdown (หน้า /annual-plans)
+// GET /api/instruments?options=true&projectId=3 -> เฉพาะอุปกรณ์ของโครงการนั้น
 export async function GET(request: NextRequest) {
   try {
     const query = request.nextUrl.searchParams.get("q");
     const limitParam = request.nextUrl.searchParams.get("limit");
     const limit = limitParam ? Number(limitParam) : undefined;
     const isOptions = request.nextUrl.searchParams.get("options") === "true";
+    const projectIdParam = request.nextUrl.searchParams.get("projectId");
+    const projectId = projectIdParam ? Number(projectIdParam) : undefined;
 
     const data = isOptions
-      ? await getInstrumentOptions()
+      ? await getInstrumentOptions(projectId)
       : query
         ? await searchInstruments(query, limit)
         : await getAllInstruments();
