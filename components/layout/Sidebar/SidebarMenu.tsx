@@ -12,6 +12,8 @@ export default function SidebarMenu() {
     { name: 'Instruments', href: '/instruments' },
     { name: 'Project', href: '/projects' },
     { name: 'Annual Plan', href: '/annual-plans' },
+    { name: 'Schedules', href: '/schedules' },
+
   ];
 
   return (

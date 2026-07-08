@@ -27,16 +27,32 @@ export function AnnualPlanForm({
   onSubmitSuccess,
 }: AnnualPlanFormProps) {
   const [form, setForm] = useState<RequestListFormData>(initialData ?? emptyRequestListForm);
+  const [projectOptions, setProjectOptions] = useState<SelectOption[]>([]);
   const [instrumentOptions, setInstrumentOptions] = useState<SelectOption[]>([]);
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  // โหลดรายชื่อโครงการ (dropdown เดียวกับหน้าเพิ่มอุปกรณ์ใหม่)
   useEffect(() => {
-    fetch("/api/instruments?options=true")
+    fetch("/api/projects")
+      .then((res) => res.json())
+      .then((json) => setProjectOptions(json.data ?? []))
+      .catch(() => setErrorMessage("ไม่สามารถโหลดรายชื่อโครงการได้ ลองรีเฟรชหน้านี้อีกครั้ง"));
+  }, []);
+
+  // โหลดรายชื่ออุปกรณ์ใหม่ทุกครั้งที่เปลี่ยนโครงการ (แผนรายปีเป็นของโครงการเดียว
+  // จึงกรองให้เลือกได้เฉพาะอุปกรณ์ของโครงการที่เลือกไว้เท่านั้น)
+  useEffect(() => {
+    if (!form.projectId) {
+      setInstrumentOptions([]);
+      return;
+    }
+
+    fetch(`/api/instruments?options=true&projectId=${form.projectId}`)
       .then((res) => res.json())
       .then((json) => setInstrumentOptions(json.data ?? []))
       .catch(() => setErrorMessage("ไม่สามารถโหลดรายชื่ออุปกรณ์ได้ ลองรีเฟรชหน้านี้อีกครั้ง"));
-  }, []);
+  }, [form.projectId]);
 
   function handleChange(
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -107,6 +123,15 @@ export function AnnualPlanForm({
 
       <div className="bg-card text-card-text p-8 rounded-2xl border border-border shadow-sm space-y-10">
         <Section title="ข้อมูลแผน">
+          <SelectInput
+            label="โครงการ (Project)"
+            name="projectId"
+            value={form.projectId}
+            onChange={handleChange}
+            options={projectOptions}
+            placeholder="เลือกโครงการ"
+            required
+          />
           <Input
             label="ปี (พ.ศ.)"
             name="year"
@@ -135,7 +160,11 @@ export function AnnualPlanForm({
 
         <Section title="รายการอุปกรณ์ในแผน">
           <div className="md:col-span-2 space-y-4">
-            {form.details.length === 0 && (
+            {!form.projectId && (
+              <p className="text-sm text-text-muted">กรุณาเลือกโครงการก่อน ถึงจะเพิ่มอุปกรณ์เข้าแผนได้</p>
+            )}
+
+            {form.projectId && form.details.length === 0 && (
               <p className="text-sm text-text-muted">ยังไม่มีอุปกรณ์ในแผน กดปุ่มด้านล่างเพื่อเพิ่ม</p>
             )}
 
@@ -153,7 +182,8 @@ export function AnnualPlanForm({
             <button
               type="button"
               onClick={addDetail}
-              className="text-sm font-medium text-action-text hover:underline"
+              disabled={!form.projectId}
+              className="text-sm font-medium text-action-text hover:underline disabled:opacity-50 disabled:no-underline disabled:cursor-not-allowed"
             >
               + เพิ่มอุปกรณ์เข้าแผน
             </button>
