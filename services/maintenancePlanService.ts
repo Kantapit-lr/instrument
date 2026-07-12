@@ -1,5 +1,35 @@
 import { prisma } from "@/lib/prisma";
 import { MaintenancePlanFormData, MaintenancePlanItem } from "@/types/maintenancePlan";
+import { OpenScheduleOption } from "@/types/calibration";
+
+// ดึงรอบกำหนดการ (Schedule) ที่ยังไม่มีผลสอบเทียบผูกอยู่ สำหรับ dropdown เลือกตอนบันทึกผล (หน้า /calibrations)
+export async function getOpenSchedules(): Promise<OpenScheduleOption[]> {
+  const schedules = await prisma.schedule.findMany({
+    where: { calibration: null },
+    orderBy: { scheduledDate: "asc" },
+    select: {
+      scheduleId: true,
+      round: true,
+      scheduledDate: true,
+      maintenanceDetail: {
+        select: {
+          maintenancePlanId: true,
+          registrationNumber: true,
+          profile: { select: { name: true, type: true } },
+        },
+      },
+    },
+  });
+
+  return schedules.map((s) => ({
+    scheduleId: s.scheduleId,
+    round: s.round,
+    registrationNumber: s.maintenanceDetail.registrationNumber,
+    maintenancePlanId: s.maintenanceDetail.maintenancePlanId,
+    instrumentType: s.maintenanceDetail.profile.type,
+    label: `${s.maintenanceDetail.profile.name} (${s.maintenanceDetail.registrationNumber}) — รอบที่ ${s.round} — กำหนด ${s.scheduledDate.toLocaleDateString("th-TH")}`,
+  }));
+}
 
 // ดึงรายชื่อกำหนดการทั้งหมด พร้อมจำนวนอุปกรณ์ในแต่ละแผน (สำหรับหน้า /schedules)
 export async function getAllMaintenancePlans(): Promise<MaintenancePlanItem[]> {

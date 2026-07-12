@@ -28,15 +28,18 @@ export type AggregateHistory = {
 
 export type HistoryAvgAggregateOutputType = {
   historyId: number | null
+  calibrationId: number | null
 }
 
 export type HistorySumAggregateOutputType = {
   historyId: number | null
+  calibrationId: number | null
 }
 
 export type HistoryMinAggregateOutputType = {
   historyId: number | null
   registrationNumber: string | null
+  calibrationId: number | null
   actionDate: Date | null
   actionType: $Enums.HistoryActionType | null
   detail: string | null
@@ -49,6 +52,7 @@ export type HistoryMinAggregateOutputType = {
 export type HistoryMaxAggregateOutputType = {
   historyId: number | null
   registrationNumber: string | null
+  calibrationId: number | null
   actionDate: Date | null
   actionType: $Enums.HistoryActionType | null
   detail: string | null
@@ -61,6 +65,7 @@ export type HistoryMaxAggregateOutputType = {
 export type HistoryCountAggregateOutputType = {
   historyId: number
   registrationNumber: number
+  calibrationId: number
   actionDate: number
   actionType: number
   detail: number
@@ -74,15 +79,18 @@ export type HistoryCountAggregateOutputType = {
 
 export type HistoryAvgAggregateInputType = {
   historyId?: true
+  calibrationId?: true
 }
 
 export type HistorySumAggregateInputType = {
   historyId?: true
+  calibrationId?: true
 }
 
 export type HistoryMinAggregateInputType = {
   historyId?: true
   registrationNumber?: true
+  calibrationId?: true
   actionDate?: true
   actionType?: true
   detail?: true
@@ -95,6 +103,7 @@ export type HistoryMinAggregateInputType = {
 export type HistoryMaxAggregateInputType = {
   historyId?: true
   registrationNumber?: true
+  calibrationId?: true
   actionDate?: true
   actionType?: true
   detail?: true
@@ -107,6 +116,7 @@ export type HistoryMaxAggregateInputType = {
 export type HistoryCountAggregateInputType = {
   historyId?: true
   registrationNumber?: true
+  calibrationId?: true
   actionDate?: true
   actionType?: true
   detail?: true
@@ -206,6 +216,7 @@ export type HistoryGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type HistoryGroupByOutputType = {
   historyId: number
   registrationNumber: string
+  calibrationId: number | null
   actionDate: Date
   actionType: $Enums.HistoryActionType
   detail: string | null
@@ -241,6 +252,7 @@ export type HistoryWhereInput = {
   NOT?: Prisma.HistoryWhereInput | Prisma.HistoryWhereInput[]
   historyId?: Prisma.IntFilter<"History"> | number
   registrationNumber?: Prisma.StringFilter<"History"> | string
+  calibrationId?: Prisma.IntNullableFilter<"History"> | number | null
   actionDate?: Prisma.DateTimeFilter<"History"> | Date | string
   actionType?: Prisma.EnumHistoryActionTypeFilter<"History"> | $Enums.HistoryActionType
   detail?: Prisma.StringNullableFilter<"History"> | string | null
@@ -249,11 +261,13 @@ export type HistoryWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"History"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"History"> | Date | string
   profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
+  calibration?: Prisma.XOR<Prisma.CalibrationNullableScalarRelationFilter, Prisma.CalibrationWhereInput> | null
 }
 
 export type HistoryOrderByWithRelationInput = {
   historyId?: Prisma.SortOrder
   registrationNumber?: Prisma.SortOrder
+  calibrationId?: Prisma.SortOrderInput | Prisma.SortOrder
   actionDate?: Prisma.SortOrder
   actionType?: Prisma.SortOrder
   detail?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -262,11 +276,13 @@ export type HistoryOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   profile?: Prisma.ProfileOrderByWithRelationInput
+  calibration?: Prisma.CalibrationOrderByWithRelationInput
   _relevance?: Prisma.HistoryOrderByRelevanceInput
 }
 
 export type HistoryWhereUniqueInput = Prisma.AtLeast<{
   historyId?: number
+  calibrationId?: number
   AND?: Prisma.HistoryWhereInput | Prisma.HistoryWhereInput[]
   OR?: Prisma.HistoryWhereInput[]
   NOT?: Prisma.HistoryWhereInput | Prisma.HistoryWhereInput[]
@@ -279,11 +295,13 @@ export type HistoryWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"History"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"History"> | Date | string
   profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
-}, "historyId">
+  calibration?: Prisma.XOR<Prisma.CalibrationNullableScalarRelationFilter, Prisma.CalibrationWhereInput> | null
+}, "historyId" | "calibrationId">
 
 export type HistoryOrderByWithAggregationInput = {
   historyId?: Prisma.SortOrder
   registrationNumber?: Prisma.SortOrder
+  calibrationId?: Prisma.SortOrderInput | Prisma.SortOrder
   actionDate?: Prisma.SortOrder
   actionType?: Prisma.SortOrder
   detail?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -304,6 +322,7 @@ export type HistoryScalarWhereWithAggregatesInput = {
   NOT?: Prisma.HistoryScalarWhereWithAggregatesInput | Prisma.HistoryScalarWhereWithAggregatesInput[]
   historyId?: Prisma.IntWithAggregatesFilter<"History"> | number
   registrationNumber?: Prisma.StringWithAggregatesFilter<"History"> | string
+  calibrationId?: Prisma.IntNullableWithAggregatesFilter<"History"> | number | null
   actionDate?: Prisma.DateTimeWithAggregatesFilter<"History"> | Date | string
   actionType?: Prisma.EnumHistoryActionTypeWithAggregatesFilter<"History"> | $Enums.HistoryActionType
   detail?: Prisma.StringNullableWithAggregatesFilter<"History"> | string | null
@@ -322,11 +341,13 @@ export type HistoryCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   profile: Prisma.ProfileCreateNestedOneWithoutHistoriesInput
+  calibration?: Prisma.CalibrationCreateNestedOneWithoutHistoryInput
 }
 
 export type HistoryUncheckedCreateInput = {
   historyId?: number
   registrationNumber: string
+  calibrationId?: number | null
   actionDate: Date | string
   actionType: $Enums.HistoryActionType
   detail?: string | null
@@ -345,11 +366,13 @@ export type HistoryUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUpdateOneRequiredWithoutHistoriesNestedInput
+  calibration?: Prisma.CalibrationUpdateOneWithoutHistoryNestedInput
 }
 
 export type HistoryUncheckedUpdateInput = {
   historyId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  calibrationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   actionDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actionType?: Prisma.EnumHistoryActionTypeFieldUpdateOperationsInput | $Enums.HistoryActionType
   detail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -362,6 +385,7 @@ export type HistoryUncheckedUpdateInput = {
 export type HistoryCreateManyInput = {
   historyId?: number
   registrationNumber: string
+  calibrationId?: number | null
   actionDate: Date | string
   actionType: $Enums.HistoryActionType
   detail?: string | null
@@ -384,6 +408,7 @@ export type HistoryUpdateManyMutationInput = {
 export type HistoryUncheckedUpdateManyInput = {
   historyId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  calibrationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   actionDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actionType?: Prisma.EnumHistoryActionTypeFieldUpdateOperationsInput | $Enums.HistoryActionType
   detail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -412,6 +437,7 @@ export type HistoryOrderByRelevanceInput = {
 export type HistoryCountOrderByAggregateInput = {
   historyId?: Prisma.SortOrder
   registrationNumber?: Prisma.SortOrder
+  calibrationId?: Prisma.SortOrder
   actionDate?: Prisma.SortOrder
   actionType?: Prisma.SortOrder
   detail?: Prisma.SortOrder
@@ -423,11 +449,13 @@ export type HistoryCountOrderByAggregateInput = {
 
 export type HistoryAvgOrderByAggregateInput = {
   historyId?: Prisma.SortOrder
+  calibrationId?: Prisma.SortOrder
 }
 
 export type HistoryMaxOrderByAggregateInput = {
   historyId?: Prisma.SortOrder
   registrationNumber?: Prisma.SortOrder
+  calibrationId?: Prisma.SortOrder
   actionDate?: Prisma.SortOrder
   actionType?: Prisma.SortOrder
   detail?: Prisma.SortOrder
@@ -440,6 +468,7 @@ export type HistoryMaxOrderByAggregateInput = {
 export type HistoryMinOrderByAggregateInput = {
   historyId?: Prisma.SortOrder
   registrationNumber?: Prisma.SortOrder
+  calibrationId?: Prisma.SortOrder
   actionDate?: Prisma.SortOrder
   actionType?: Prisma.SortOrder
   detail?: Prisma.SortOrder
@@ -451,6 +480,12 @@ export type HistoryMinOrderByAggregateInput = {
 
 export type HistorySumOrderByAggregateInput = {
   historyId?: Prisma.SortOrder
+  calibrationId?: Prisma.SortOrder
+}
+
+export type HistoryNullableScalarRelationFilter = {
+  is?: Prisma.HistoryWhereInput | null
+  isNot?: Prisma.HistoryWhereInput | null
 }
 
 export type HistoryCreateNestedManyWithoutProfileInput = {
@@ -499,6 +534,38 @@ export type EnumHistoryActionTypeFieldUpdateOperationsInput = {
   set?: $Enums.HistoryActionType
 }
 
+export type HistoryCreateNestedOneWithoutCalibrationInput = {
+  create?: Prisma.XOR<Prisma.HistoryCreateWithoutCalibrationInput, Prisma.HistoryUncheckedCreateWithoutCalibrationInput>
+  connectOrCreate?: Prisma.HistoryCreateOrConnectWithoutCalibrationInput
+  connect?: Prisma.HistoryWhereUniqueInput
+}
+
+export type HistoryUncheckedCreateNestedOneWithoutCalibrationInput = {
+  create?: Prisma.XOR<Prisma.HistoryCreateWithoutCalibrationInput, Prisma.HistoryUncheckedCreateWithoutCalibrationInput>
+  connectOrCreate?: Prisma.HistoryCreateOrConnectWithoutCalibrationInput
+  connect?: Prisma.HistoryWhereUniqueInput
+}
+
+export type HistoryUpdateOneWithoutCalibrationNestedInput = {
+  create?: Prisma.XOR<Prisma.HistoryCreateWithoutCalibrationInput, Prisma.HistoryUncheckedCreateWithoutCalibrationInput>
+  connectOrCreate?: Prisma.HistoryCreateOrConnectWithoutCalibrationInput
+  upsert?: Prisma.HistoryUpsertWithoutCalibrationInput
+  disconnect?: Prisma.HistoryWhereInput | boolean
+  delete?: Prisma.HistoryWhereInput | boolean
+  connect?: Prisma.HistoryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.HistoryUpdateToOneWithWhereWithoutCalibrationInput, Prisma.HistoryUpdateWithoutCalibrationInput>, Prisma.HistoryUncheckedUpdateWithoutCalibrationInput>
+}
+
+export type HistoryUncheckedUpdateOneWithoutCalibrationNestedInput = {
+  create?: Prisma.XOR<Prisma.HistoryCreateWithoutCalibrationInput, Prisma.HistoryUncheckedCreateWithoutCalibrationInput>
+  connectOrCreate?: Prisma.HistoryCreateOrConnectWithoutCalibrationInput
+  upsert?: Prisma.HistoryUpsertWithoutCalibrationInput
+  disconnect?: Prisma.HistoryWhereInput | boolean
+  delete?: Prisma.HistoryWhereInput | boolean
+  connect?: Prisma.HistoryWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.HistoryUpdateToOneWithWhereWithoutCalibrationInput, Prisma.HistoryUpdateWithoutCalibrationInput>, Prisma.HistoryUncheckedUpdateWithoutCalibrationInput>
+}
+
 export type HistoryCreateWithoutProfileInput = {
   actionDate: Date | string
   actionType: $Enums.HistoryActionType
@@ -507,10 +574,12 @@ export type HistoryCreateWithoutProfileInput = {
   remark?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  calibration?: Prisma.CalibrationCreateNestedOneWithoutHistoryInput
 }
 
 export type HistoryUncheckedCreateWithoutProfileInput = {
   historyId?: number
+  calibrationId?: number | null
   actionDate: Date | string
   actionType: $Enums.HistoryActionType
   detail?: string | null
@@ -552,6 +621,7 @@ export type HistoryScalarWhereInput = {
   NOT?: Prisma.HistoryScalarWhereInput | Prisma.HistoryScalarWhereInput[]
   historyId?: Prisma.IntFilter<"History"> | number
   registrationNumber?: Prisma.StringFilter<"History"> | string
+  calibrationId?: Prisma.IntNullableFilter<"History"> | number | null
   actionDate?: Prisma.DateTimeFilter<"History"> | Date | string
   actionType?: Prisma.EnumHistoryActionTypeFilter<"History"> | $Enums.HistoryActionType
   detail?: Prisma.StringNullableFilter<"History"> | string | null
@@ -561,8 +631,71 @@ export type HistoryScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"History"> | Date | string
 }
 
+export type HistoryCreateWithoutCalibrationInput = {
+  actionDate: Date | string
+  actionType: $Enums.HistoryActionType
+  detail?: string | null
+  operator: string
+  remark?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile: Prisma.ProfileCreateNestedOneWithoutHistoriesInput
+}
+
+export type HistoryUncheckedCreateWithoutCalibrationInput = {
+  historyId?: number
+  registrationNumber: string
+  actionDate: Date | string
+  actionType: $Enums.HistoryActionType
+  detail?: string | null
+  operator: string
+  remark?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type HistoryCreateOrConnectWithoutCalibrationInput = {
+  where: Prisma.HistoryWhereUniqueInput
+  create: Prisma.XOR<Prisma.HistoryCreateWithoutCalibrationInput, Prisma.HistoryUncheckedCreateWithoutCalibrationInput>
+}
+
+export type HistoryUpsertWithoutCalibrationInput = {
+  update: Prisma.XOR<Prisma.HistoryUpdateWithoutCalibrationInput, Prisma.HistoryUncheckedUpdateWithoutCalibrationInput>
+  create: Prisma.XOR<Prisma.HistoryCreateWithoutCalibrationInput, Prisma.HistoryUncheckedCreateWithoutCalibrationInput>
+  where?: Prisma.HistoryWhereInput
+}
+
+export type HistoryUpdateToOneWithWhereWithoutCalibrationInput = {
+  where?: Prisma.HistoryWhereInput
+  data: Prisma.XOR<Prisma.HistoryUpdateWithoutCalibrationInput, Prisma.HistoryUncheckedUpdateWithoutCalibrationInput>
+}
+
+export type HistoryUpdateWithoutCalibrationInput = {
+  actionDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actionType?: Prisma.EnumHistoryActionTypeFieldUpdateOperationsInput | $Enums.HistoryActionType
+  detail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operator?: Prisma.StringFieldUpdateOperationsInput | string
+  remark?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneRequiredWithoutHistoriesNestedInput
+}
+
+export type HistoryUncheckedUpdateWithoutCalibrationInput = {
+  historyId?: Prisma.IntFieldUpdateOperationsInput | number
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  actionDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  actionType?: Prisma.EnumHistoryActionTypeFieldUpdateOperationsInput | $Enums.HistoryActionType
+  detail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operator?: Prisma.StringFieldUpdateOperationsInput | string
+  remark?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type HistoryCreateManyProfileInput = {
   historyId?: number
+  calibrationId?: number | null
   actionDate: Date | string
   actionType: $Enums.HistoryActionType
   detail?: string | null
@@ -580,10 +713,12 @@ export type HistoryUpdateWithoutProfileInput = {
   remark?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  calibration?: Prisma.CalibrationUpdateOneWithoutHistoryNestedInput
 }
 
 export type HistoryUncheckedUpdateWithoutProfileInput = {
   historyId?: Prisma.IntFieldUpdateOperationsInput | number
+  calibrationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   actionDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actionType?: Prisma.EnumHistoryActionTypeFieldUpdateOperationsInput | $Enums.HistoryActionType
   detail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -595,6 +730,7 @@ export type HistoryUncheckedUpdateWithoutProfileInput = {
 
 export type HistoryUncheckedUpdateManyWithoutProfileInput = {
   historyId?: Prisma.IntFieldUpdateOperationsInput | number
+  calibrationId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   actionDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   actionType?: Prisma.EnumHistoryActionTypeFieldUpdateOperationsInput | $Enums.HistoryActionType
   detail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -609,6 +745,7 @@ export type HistoryUncheckedUpdateManyWithoutProfileInput = {
 export type HistorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   historyId?: boolean
   registrationNumber?: boolean
+  calibrationId?: boolean
   actionDate?: boolean
   actionType?: boolean
   detail?: boolean
@@ -617,6 +754,7 @@ export type HistorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   createdAt?: boolean
   updatedAt?: boolean
   profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
+  calibration?: boolean | Prisma.History$calibrationArgs<ExtArgs>
 }, ExtArgs["result"]["history"]>
 
 
@@ -624,6 +762,7 @@ export type HistorySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type HistorySelectScalar = {
   historyId?: boolean
   registrationNumber?: boolean
+  calibrationId?: boolean
   actionDate?: boolean
   actionType?: boolean
   detail?: boolean
@@ -633,19 +772,22 @@ export type HistorySelectScalar = {
   updatedAt?: boolean
 }
 
-export type HistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"historyId" | "registrationNumber" | "actionDate" | "actionType" | "detail" | "operator" | "remark" | "createdAt" | "updatedAt", ExtArgs["result"]["history"]>
+export type HistoryOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"historyId" | "registrationNumber" | "calibrationId" | "actionDate" | "actionType" | "detail" | "operator" | "remark" | "createdAt" | "updatedAt", ExtArgs["result"]["history"]>
 export type HistoryInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
+  calibration?: boolean | Prisma.History$calibrationArgs<ExtArgs>
 }
 
 export type $HistoryPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "History"
   objects: {
     profile: Prisma.$ProfilePayload<ExtArgs>
+    calibration: Prisma.$CalibrationPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     historyId: number
     registrationNumber: string
+    calibrationId: number | null
     actionDate: Date
     actionType: $Enums.HistoryActionType
     detail: string | null
@@ -994,6 +1136,7 @@ readonly fields: HistoryFieldRefs;
 export interface Prisma__HistoryClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   profile<T extends Prisma.ProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  calibration<T extends Prisma.History$calibrationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.History$calibrationArgs<ExtArgs>>): Prisma.Prisma__CalibrationClient<runtime.Types.Result.GetResult<Prisma.$CalibrationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1025,6 +1168,7 @@ export interface Prisma__HistoryClient<T, Null = never, ExtArgs extends runtime.
 export interface HistoryFieldRefs {
   readonly historyId: Prisma.FieldRef<"History", 'Int'>
   readonly registrationNumber: Prisma.FieldRef<"History", 'String'>
+  readonly calibrationId: Prisma.FieldRef<"History", 'Int'>
   readonly actionDate: Prisma.FieldRef<"History", 'DateTime'>
   readonly actionType: Prisma.FieldRef<"History", 'HistoryActionType'>
   readonly detail: Prisma.FieldRef<"History", 'String'>
@@ -1377,6 +1521,25 @@ export type HistoryDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Histories to delete.
    */
   limit?: number
+}
+
+/**
+ * History.calibration
+ */
+export type History$calibrationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Calibration
+   */
+  select?: Prisma.CalibrationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Calibration
+   */
+  omit?: Prisma.CalibrationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CalibrationInclude<ExtArgs> | null
+  where?: Prisma.CalibrationWhereInput
 }
 
 /**

@@ -28,16 +28,19 @@ export type AggregateRequestList = {
 
 export type RequestListAvgAggregateOutputType = {
   requestListId: number | null
+  projectId: number | null
   year: number | null
 }
 
 export type RequestListSumAggregateOutputType = {
   requestListId: number | null
+  projectId: number | null
   year: number | null
 }
 
 export type RequestListMinAggregateOutputType = {
   requestListId: number | null
+  projectId: number | null
   year: number | null
   operator: string | null
   status: string | null
@@ -47,6 +50,7 @@ export type RequestListMinAggregateOutputType = {
 
 export type RequestListMaxAggregateOutputType = {
   requestListId: number | null
+  projectId: number | null
   year: number | null
   operator: string | null
   status: string | null
@@ -56,6 +60,7 @@ export type RequestListMaxAggregateOutputType = {
 
 export type RequestListCountAggregateOutputType = {
   requestListId: number
+  projectId: number
   year: number
   operator: number
   status: number
@@ -67,16 +72,19 @@ export type RequestListCountAggregateOutputType = {
 
 export type RequestListAvgAggregateInputType = {
   requestListId?: true
+  projectId?: true
   year?: true
 }
 
 export type RequestListSumAggregateInputType = {
   requestListId?: true
+  projectId?: true
   year?: true
 }
 
 export type RequestListMinAggregateInputType = {
   requestListId?: true
+  projectId?: true
   year?: true
   operator?: true
   status?: true
@@ -86,6 +94,7 @@ export type RequestListMinAggregateInputType = {
 
 export type RequestListMaxAggregateInputType = {
   requestListId?: true
+  projectId?: true
   year?: true
   operator?: true
   status?: true
@@ -95,6 +104,7 @@ export type RequestListMaxAggregateInputType = {
 
 export type RequestListCountAggregateInputType = {
   requestListId?: true
+  projectId?: true
   year?: true
   operator?: true
   status?: true
@@ -191,6 +201,7 @@ export type RequestListGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type RequestListGroupByOutputType = {
   requestListId: number
+  projectId: number
   year: number
   operator: string
   status: string
@@ -223,22 +234,26 @@ export type RequestListWhereInput = {
   OR?: Prisma.RequestListWhereInput[]
   NOT?: Prisma.RequestListWhereInput | Prisma.RequestListWhereInput[]
   requestListId?: Prisma.IntFilter<"RequestList"> | number
+  projectId?: Prisma.IntFilter<"RequestList"> | number
   year?: Prisma.IntFilter<"RequestList"> | number
   operator?: Prisma.StringFilter<"RequestList"> | string
   status?: Prisma.StringFilter<"RequestList"> | string
   createdAt?: Prisma.DateTimeFilter<"RequestList"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RequestList"> | Date | string
+  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
   requestDetails?: Prisma.RequestDetailListRelationFilter
   maintenancePlans?: Prisma.MaintenancePlanListRelationFilter
 }
 
 export type RequestListOrderByWithRelationInput = {
   requestListId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
   operator?: Prisma.SortOrder
   status?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  project?: Prisma.ProjectOrderByWithRelationInput
   requestDetails?: Prisma.RequestDetailOrderByRelationAggregateInput
   maintenancePlans?: Prisma.MaintenancePlanOrderByRelationAggregateInput
   _relevance?: Prisma.RequestListOrderByRelevanceInput
@@ -249,17 +264,20 @@ export type RequestListWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.RequestListWhereInput | Prisma.RequestListWhereInput[]
   OR?: Prisma.RequestListWhereInput[]
   NOT?: Prisma.RequestListWhereInput | Prisma.RequestListWhereInput[]
+  projectId?: Prisma.IntFilter<"RequestList"> | number
   year?: Prisma.IntFilter<"RequestList"> | number
   operator?: Prisma.StringFilter<"RequestList"> | string
   status?: Prisma.StringFilter<"RequestList"> | string
   createdAt?: Prisma.DateTimeFilter<"RequestList"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"RequestList"> | Date | string
+  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
   requestDetails?: Prisma.RequestDetailListRelationFilter
   maintenancePlans?: Prisma.MaintenancePlanListRelationFilter
 }, "requestListId">
 
 export type RequestListOrderByWithAggregationInput = {
   requestListId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
   operator?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -277,6 +295,7 @@ export type RequestListScalarWhereWithAggregatesInput = {
   OR?: Prisma.RequestListScalarWhereWithAggregatesInput[]
   NOT?: Prisma.RequestListScalarWhereWithAggregatesInput | Prisma.RequestListScalarWhereWithAggregatesInput[]
   requestListId?: Prisma.IntWithAggregatesFilter<"RequestList"> | number
+  projectId?: Prisma.IntWithAggregatesFilter<"RequestList"> | number
   year?: Prisma.IntWithAggregatesFilter<"RequestList"> | number
   operator?: Prisma.StringWithAggregatesFilter<"RequestList"> | string
   status?: Prisma.StringWithAggregatesFilter<"RequestList"> | string
@@ -290,12 +309,14 @@ export type RequestListCreateInput = {
   status: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  project: Prisma.ProjectCreateNestedOneWithoutRequestListsInput
   requestDetails?: Prisma.RequestDetailCreateNestedManyWithoutRequestListInput
   maintenancePlans?: Prisma.MaintenancePlanCreateNestedManyWithoutRequestListInput
 }
 
 export type RequestListUncheckedCreateInput = {
   requestListId?: number
+  projectId: number
   year: number
   operator: string
   status: string
@@ -311,12 +332,14 @@ export type RequestListUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project?: Prisma.ProjectUpdateOneRequiredWithoutRequestListsNestedInput
   requestDetails?: Prisma.RequestDetailUpdateManyWithoutRequestListNestedInput
   maintenancePlans?: Prisma.MaintenancePlanUpdateManyWithoutRequestListNestedInput
 }
 
 export type RequestListUncheckedUpdateInput = {
   requestListId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
   operator?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -328,6 +351,7 @@ export type RequestListUncheckedUpdateInput = {
 
 export type RequestListCreateManyInput = {
   requestListId?: number
+  projectId: number
   year: number
   operator: string
   status: string
@@ -345,11 +369,22 @@ export type RequestListUpdateManyMutationInput = {
 
 export type RequestListUncheckedUpdateManyInput = {
   requestListId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
   operator?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type RequestListListRelationFilter = {
+  every?: Prisma.RequestListWhereInput
+  some?: Prisma.RequestListWhereInput
+  none?: Prisma.RequestListWhereInput
+}
+
+export type RequestListOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type RequestListOrderByRelevanceInput = {
@@ -360,6 +395,7 @@ export type RequestListOrderByRelevanceInput = {
 
 export type RequestListCountOrderByAggregateInput = {
   requestListId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
   operator?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -369,11 +405,13 @@ export type RequestListCountOrderByAggregateInput = {
 
 export type RequestListAvgOrderByAggregateInput = {
   requestListId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
 }
 
 export type RequestListMaxOrderByAggregateInput = {
   requestListId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
   operator?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -383,6 +421,7 @@ export type RequestListMaxOrderByAggregateInput = {
 
 export type RequestListMinOrderByAggregateInput = {
   requestListId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
   operator?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -392,6 +431,7 @@ export type RequestListMinOrderByAggregateInput = {
 
 export type RequestListSumOrderByAggregateInput = {
   requestListId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
 }
 
@@ -403,6 +443,48 @@ export type RequestListScalarRelationFilter = {
 export type RequestListNullableScalarRelationFilter = {
   is?: Prisma.RequestListWhereInput | null
   isNot?: Prisma.RequestListWhereInput | null
+}
+
+export type RequestListCreateNestedManyWithoutProjectInput = {
+  create?: Prisma.XOR<Prisma.RequestListCreateWithoutProjectInput, Prisma.RequestListUncheckedCreateWithoutProjectInput> | Prisma.RequestListCreateWithoutProjectInput[] | Prisma.RequestListUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.RequestListCreateOrConnectWithoutProjectInput | Prisma.RequestListCreateOrConnectWithoutProjectInput[]
+  createMany?: Prisma.RequestListCreateManyProjectInputEnvelope
+  connect?: Prisma.RequestListWhereUniqueInput | Prisma.RequestListWhereUniqueInput[]
+}
+
+export type RequestListUncheckedCreateNestedManyWithoutProjectInput = {
+  create?: Prisma.XOR<Prisma.RequestListCreateWithoutProjectInput, Prisma.RequestListUncheckedCreateWithoutProjectInput> | Prisma.RequestListCreateWithoutProjectInput[] | Prisma.RequestListUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.RequestListCreateOrConnectWithoutProjectInput | Prisma.RequestListCreateOrConnectWithoutProjectInput[]
+  createMany?: Prisma.RequestListCreateManyProjectInputEnvelope
+  connect?: Prisma.RequestListWhereUniqueInput | Prisma.RequestListWhereUniqueInput[]
+}
+
+export type RequestListUpdateManyWithoutProjectNestedInput = {
+  create?: Prisma.XOR<Prisma.RequestListCreateWithoutProjectInput, Prisma.RequestListUncheckedCreateWithoutProjectInput> | Prisma.RequestListCreateWithoutProjectInput[] | Prisma.RequestListUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.RequestListCreateOrConnectWithoutProjectInput | Prisma.RequestListCreateOrConnectWithoutProjectInput[]
+  upsert?: Prisma.RequestListUpsertWithWhereUniqueWithoutProjectInput | Prisma.RequestListUpsertWithWhereUniqueWithoutProjectInput[]
+  createMany?: Prisma.RequestListCreateManyProjectInputEnvelope
+  set?: Prisma.RequestListWhereUniqueInput | Prisma.RequestListWhereUniqueInput[]
+  disconnect?: Prisma.RequestListWhereUniqueInput | Prisma.RequestListWhereUniqueInput[]
+  delete?: Prisma.RequestListWhereUniqueInput | Prisma.RequestListWhereUniqueInput[]
+  connect?: Prisma.RequestListWhereUniqueInput | Prisma.RequestListWhereUniqueInput[]
+  update?: Prisma.RequestListUpdateWithWhereUniqueWithoutProjectInput | Prisma.RequestListUpdateWithWhereUniqueWithoutProjectInput[]
+  updateMany?: Prisma.RequestListUpdateManyWithWhereWithoutProjectInput | Prisma.RequestListUpdateManyWithWhereWithoutProjectInput[]
+  deleteMany?: Prisma.RequestListScalarWhereInput | Prisma.RequestListScalarWhereInput[]
+}
+
+export type RequestListUncheckedUpdateManyWithoutProjectNestedInput = {
+  create?: Prisma.XOR<Prisma.RequestListCreateWithoutProjectInput, Prisma.RequestListUncheckedCreateWithoutProjectInput> | Prisma.RequestListCreateWithoutProjectInput[] | Prisma.RequestListUncheckedCreateWithoutProjectInput[]
+  connectOrCreate?: Prisma.RequestListCreateOrConnectWithoutProjectInput | Prisma.RequestListCreateOrConnectWithoutProjectInput[]
+  upsert?: Prisma.RequestListUpsertWithWhereUniqueWithoutProjectInput | Prisma.RequestListUpsertWithWhereUniqueWithoutProjectInput[]
+  createMany?: Prisma.RequestListCreateManyProjectInputEnvelope
+  set?: Prisma.RequestListWhereUniqueInput | Prisma.RequestListWhereUniqueInput[]
+  disconnect?: Prisma.RequestListWhereUniqueInput | Prisma.RequestListWhereUniqueInput[]
+  delete?: Prisma.RequestListWhereUniqueInput | Prisma.RequestListWhereUniqueInput[]
+  connect?: Prisma.RequestListWhereUniqueInput | Prisma.RequestListWhereUniqueInput[]
+  update?: Prisma.RequestListUpdateWithWhereUniqueWithoutProjectInput | Prisma.RequestListUpdateWithWhereUniqueWithoutProjectInput[]
+  updateMany?: Prisma.RequestListUpdateManyWithWhereWithoutProjectInput | Prisma.RequestListUpdateManyWithWhereWithoutProjectInput[]
+  deleteMany?: Prisma.RequestListScalarWhereInput | Prisma.RequestListScalarWhereInput[]
 }
 
 export type RequestListCreateNestedOneWithoutRequestDetailsInput = {
@@ -435,17 +517,79 @@ export type RequestListUpdateOneWithoutMaintenancePlansNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.RequestListUpdateToOneWithWhereWithoutMaintenancePlansInput, Prisma.RequestListUpdateWithoutMaintenancePlansInput>, Prisma.RequestListUncheckedUpdateWithoutMaintenancePlansInput>
 }
 
+export type RequestListCreateWithoutProjectInput = {
+  year: number
+  operator: string
+  status: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  requestDetails?: Prisma.RequestDetailCreateNestedManyWithoutRequestListInput
+  maintenancePlans?: Prisma.MaintenancePlanCreateNestedManyWithoutRequestListInput
+}
+
+export type RequestListUncheckedCreateWithoutProjectInput = {
+  requestListId?: number
+  year: number
+  operator: string
+  status: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  requestDetails?: Prisma.RequestDetailUncheckedCreateNestedManyWithoutRequestListInput
+  maintenancePlans?: Prisma.MaintenancePlanUncheckedCreateNestedManyWithoutRequestListInput
+}
+
+export type RequestListCreateOrConnectWithoutProjectInput = {
+  where: Prisma.RequestListWhereUniqueInput
+  create: Prisma.XOR<Prisma.RequestListCreateWithoutProjectInput, Prisma.RequestListUncheckedCreateWithoutProjectInput>
+}
+
+export type RequestListCreateManyProjectInputEnvelope = {
+  data: Prisma.RequestListCreateManyProjectInput | Prisma.RequestListCreateManyProjectInput[]
+  skipDuplicates?: boolean
+}
+
+export type RequestListUpsertWithWhereUniqueWithoutProjectInput = {
+  where: Prisma.RequestListWhereUniqueInput
+  update: Prisma.XOR<Prisma.RequestListUpdateWithoutProjectInput, Prisma.RequestListUncheckedUpdateWithoutProjectInput>
+  create: Prisma.XOR<Prisma.RequestListCreateWithoutProjectInput, Prisma.RequestListUncheckedCreateWithoutProjectInput>
+}
+
+export type RequestListUpdateWithWhereUniqueWithoutProjectInput = {
+  where: Prisma.RequestListWhereUniqueInput
+  data: Prisma.XOR<Prisma.RequestListUpdateWithoutProjectInput, Prisma.RequestListUncheckedUpdateWithoutProjectInput>
+}
+
+export type RequestListUpdateManyWithWhereWithoutProjectInput = {
+  where: Prisma.RequestListScalarWhereInput
+  data: Prisma.XOR<Prisma.RequestListUpdateManyMutationInput, Prisma.RequestListUncheckedUpdateManyWithoutProjectInput>
+}
+
+export type RequestListScalarWhereInput = {
+  AND?: Prisma.RequestListScalarWhereInput | Prisma.RequestListScalarWhereInput[]
+  OR?: Prisma.RequestListScalarWhereInput[]
+  NOT?: Prisma.RequestListScalarWhereInput | Prisma.RequestListScalarWhereInput[]
+  requestListId?: Prisma.IntFilter<"RequestList"> | number
+  projectId?: Prisma.IntFilter<"RequestList"> | number
+  year?: Prisma.IntFilter<"RequestList"> | number
+  operator?: Prisma.StringFilter<"RequestList"> | string
+  status?: Prisma.StringFilter<"RequestList"> | string
+  createdAt?: Prisma.DateTimeFilter<"RequestList"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"RequestList"> | Date | string
+}
+
 export type RequestListCreateWithoutRequestDetailsInput = {
   year: number
   operator: string
   status: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  project: Prisma.ProjectCreateNestedOneWithoutRequestListsInput
   maintenancePlans?: Prisma.MaintenancePlanCreateNestedManyWithoutRequestListInput
 }
 
 export type RequestListUncheckedCreateWithoutRequestDetailsInput = {
   requestListId?: number
+  projectId: number
   year: number
   operator: string
   status: string
@@ -476,11 +620,13 @@ export type RequestListUpdateWithoutRequestDetailsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project?: Prisma.ProjectUpdateOneRequiredWithoutRequestListsNestedInput
   maintenancePlans?: Prisma.MaintenancePlanUpdateManyWithoutRequestListNestedInput
 }
 
 export type RequestListUncheckedUpdateWithoutRequestDetailsInput = {
   requestListId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
   operator?: Prisma.StringFieldUpdateOperationsInput | string
   status?: Prisma.StringFieldUpdateOperationsInput | string
@@ -495,11 +641,13 @@ export type RequestListCreateWithoutMaintenancePlansInput = {
   status: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  project: Prisma.ProjectCreateNestedOneWithoutRequestListsInput
   requestDetails?: Prisma.RequestDetailCreateNestedManyWithoutRequestListInput
 }
 
 export type RequestListUncheckedCreateWithoutMaintenancePlansInput = {
   requestListId?: number
+  projectId: number
   year: number
   operator: string
   status: string
@@ -530,10 +678,41 @@ export type RequestListUpdateWithoutMaintenancePlansInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project?: Prisma.ProjectUpdateOneRequiredWithoutRequestListsNestedInput
   requestDetails?: Prisma.RequestDetailUpdateManyWithoutRequestListNestedInput
 }
 
 export type RequestListUncheckedUpdateWithoutMaintenancePlansInput = {
+  requestListId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  operator?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  requestDetails?: Prisma.RequestDetailUncheckedUpdateManyWithoutRequestListNestedInput
+}
+
+export type RequestListCreateManyProjectInput = {
+  requestListId?: number
+  year: number
+  operator: string
+  status: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type RequestListUpdateWithoutProjectInput = {
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  operator?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  requestDetails?: Prisma.RequestDetailUpdateManyWithoutRequestListNestedInput
+  maintenancePlans?: Prisma.MaintenancePlanUpdateManyWithoutRequestListNestedInput
+}
+
+export type RequestListUncheckedUpdateWithoutProjectInput = {
   requestListId?: Prisma.IntFieldUpdateOperationsInput | number
   year?: Prisma.IntFieldUpdateOperationsInput | number
   operator?: Prisma.StringFieldUpdateOperationsInput | string
@@ -541,6 +720,16 @@ export type RequestListUncheckedUpdateWithoutMaintenancePlansInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   requestDetails?: Prisma.RequestDetailUncheckedUpdateManyWithoutRequestListNestedInput
+  maintenancePlans?: Prisma.MaintenancePlanUncheckedUpdateManyWithoutRequestListNestedInput
+}
+
+export type RequestListUncheckedUpdateManyWithoutProjectInput = {
+  requestListId?: Prisma.IntFieldUpdateOperationsInput | number
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  operator?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
@@ -585,11 +774,13 @@ export type RequestListCountOutputTypeCountMaintenancePlansArgs<ExtArgs extends 
 
 export type RequestListSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   requestListId?: boolean
+  projectId?: boolean
   year?: boolean
   operator?: boolean
   status?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
   requestDetails?: boolean | Prisma.RequestList$requestDetailsArgs<ExtArgs>
   maintenancePlans?: boolean | Prisma.RequestList$maintenancePlansArgs<ExtArgs>
   _count?: boolean | Prisma.RequestListCountOutputTypeDefaultArgs<ExtArgs>
@@ -599,6 +790,7 @@ export type RequestListSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type RequestListSelectScalar = {
   requestListId?: boolean
+  projectId?: boolean
   year?: boolean
   operator?: boolean
   status?: boolean
@@ -606,8 +798,9 @@ export type RequestListSelectScalar = {
   updatedAt?: boolean
 }
 
-export type RequestListOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"requestListId" | "year" | "operator" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["requestList"]>
+export type RequestListOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"requestListId" | "projectId" | "year" | "operator" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["requestList"]>
 export type RequestListInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
   requestDetails?: boolean | Prisma.RequestList$requestDetailsArgs<ExtArgs>
   maintenancePlans?: boolean | Prisma.RequestList$maintenancePlansArgs<ExtArgs>
   _count?: boolean | Prisma.RequestListCountOutputTypeDefaultArgs<ExtArgs>
@@ -616,11 +809,13 @@ export type RequestListInclude<ExtArgs extends runtime.Types.Extensions.Internal
 export type $RequestListPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "RequestList"
   objects: {
+    project: Prisma.$ProjectPayload<ExtArgs>
     requestDetails: Prisma.$RequestDetailPayload<ExtArgs>[]
     maintenancePlans: Prisma.$MaintenancePlanPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     requestListId: number
+    projectId: number
     year: number
     operator: string
     status: string
@@ -966,6 +1161,7 @@ readonly fields: RequestListFieldRefs;
  */
 export interface Prisma__RequestListClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  project<T extends Prisma.ProjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProjectDefaultArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   requestDetails<T extends Prisma.RequestList$requestDetailsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RequestList$requestDetailsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestDetailPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   maintenancePlans<T extends Prisma.RequestList$maintenancePlansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RequestList$maintenancePlansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaintenancePlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -998,6 +1194,7 @@ export interface Prisma__RequestListClient<T, Null = never, ExtArgs extends runt
  */
 export interface RequestListFieldRefs {
   readonly requestListId: Prisma.FieldRef<"RequestList", 'Int'>
+  readonly projectId: Prisma.FieldRef<"RequestList", 'Int'>
   readonly year: Prisma.FieldRef<"RequestList", 'Int'>
   readonly operator: Prisma.FieldRef<"RequestList", 'String'>
   readonly status: Prisma.FieldRef<"RequestList", 'String'>

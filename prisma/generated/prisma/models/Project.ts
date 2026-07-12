@@ -219,6 +219,7 @@ export type ProjectWhereInput = {
   profiles?: Prisma.ProfileListRelationFilter
   contacts?: Prisma.ContactListRelationFilter
   maintenancePlans?: Prisma.MaintenancePlanListRelationFilter
+  requestLists?: Prisma.RequestListListRelationFilter
 }
 
 export type ProjectOrderByWithRelationInput = {
@@ -230,6 +231,7 @@ export type ProjectOrderByWithRelationInput = {
   profiles?: Prisma.ProfileOrderByRelationAggregateInput
   contacts?: Prisma.ContactOrderByRelationAggregateInput
   maintenancePlans?: Prisma.MaintenancePlanOrderByRelationAggregateInput
+  requestLists?: Prisma.RequestListOrderByRelationAggregateInput
   _relevance?: Prisma.ProjectOrderByRelevanceInput
 }
 
@@ -245,6 +247,7 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   profiles?: Prisma.ProfileListRelationFilter
   contacts?: Prisma.ContactListRelationFilter
   maintenancePlans?: Prisma.MaintenancePlanListRelationFilter
+  requestLists?: Prisma.RequestListListRelationFilter
 }, "projectId" | "name" | "nickName">
 
 export type ProjectOrderByWithAggregationInput = {
@@ -279,6 +282,7 @@ export type ProjectCreateInput = {
   profiles?: Prisma.ProfileCreateNestedManyWithoutProjectInput
   contacts?: Prisma.ContactCreateNestedManyWithoutProjectInput
   maintenancePlans?: Prisma.MaintenancePlanCreateNestedManyWithoutProjectInput
+  requestLists?: Prisma.RequestListCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateInput = {
@@ -290,6 +294,7 @@ export type ProjectUncheckedCreateInput = {
   profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutProjectInput
   contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutProjectInput
   maintenancePlans?: Prisma.MaintenancePlanUncheckedCreateNestedManyWithoutProjectInput
+  requestLists?: Prisma.RequestListUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUpdateInput = {
@@ -300,6 +305,7 @@ export type ProjectUpdateInput = {
   profiles?: Prisma.ProfileUpdateManyWithoutProjectNestedInput
   contacts?: Prisma.ContactUpdateManyWithoutProjectNestedInput
   maintenancePlans?: Prisma.MaintenancePlanUpdateManyWithoutProjectNestedInput
+  requestLists?: Prisma.RequestListUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateInput = {
@@ -311,6 +317,7 @@ export type ProjectUncheckedUpdateInput = {
   profiles?: Prisma.ProfileUncheckedUpdateManyWithoutProjectNestedInput
   contacts?: Prisma.ContactUncheckedUpdateManyWithoutProjectNestedInput
   maintenancePlans?: Prisma.MaintenancePlanUncheckedUpdateManyWithoutProjectNestedInput
+  requestLists?: Prisma.RequestListUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
@@ -414,6 +421,20 @@ export type ProjectUpdateOneRequiredWithoutProfilesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutProfilesInput, Prisma.ProjectUpdateWithoutProfilesInput>, Prisma.ProjectUncheckedUpdateWithoutProfilesInput>
 }
 
+export type ProjectCreateNestedOneWithoutRequestListsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutRequestListsInput, Prisma.ProjectUncheckedCreateWithoutRequestListsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutRequestListsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneRequiredWithoutRequestListsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutRequestListsInput, Prisma.ProjectUncheckedCreateWithoutRequestListsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutRequestListsInput
+  upsert?: Prisma.ProjectUpsertWithoutRequestListsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutRequestListsInput, Prisma.ProjectUpdateWithoutRequestListsInput>, Prisma.ProjectUncheckedUpdateWithoutRequestListsInput>
+}
+
 export type ProjectCreateNestedOneWithoutMaintenancePlansInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutMaintenancePlansInput, Prisma.ProjectUncheckedCreateWithoutMaintenancePlansInput>
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutMaintenancePlansInput
@@ -437,6 +458,7 @@ export type ProjectCreateWithoutContactsInput = {
   updatedAt?: Date | string
   profiles?: Prisma.ProfileCreateNestedManyWithoutProjectInput
   maintenancePlans?: Prisma.MaintenancePlanCreateNestedManyWithoutProjectInput
+  requestLists?: Prisma.RequestListCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutContactsInput = {
@@ -447,6 +469,7 @@ export type ProjectUncheckedCreateWithoutContactsInput = {
   updatedAt?: Date | string
   profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutProjectInput
   maintenancePlans?: Prisma.MaintenancePlanUncheckedCreateNestedManyWithoutProjectInput
+  requestLists?: Prisma.RequestListUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutContactsInput = {
@@ -472,6 +495,7 @@ export type ProjectUpdateWithoutContactsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profiles?: Prisma.ProfileUpdateManyWithoutProjectNestedInput
   maintenancePlans?: Prisma.MaintenancePlanUpdateManyWithoutProjectNestedInput
+  requestLists?: Prisma.RequestListUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutContactsInput = {
@@ -482,6 +506,7 @@ export type ProjectUncheckedUpdateWithoutContactsInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profiles?: Prisma.ProfileUncheckedUpdateManyWithoutProjectNestedInput
   maintenancePlans?: Prisma.MaintenancePlanUncheckedUpdateManyWithoutProjectNestedInput
+  requestLists?: Prisma.RequestListUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateWithoutProfilesInput = {
@@ -491,6 +516,7 @@ export type ProjectCreateWithoutProfilesInput = {
   updatedAt?: Date | string
   contacts?: Prisma.ContactCreateNestedManyWithoutProjectInput
   maintenancePlans?: Prisma.MaintenancePlanCreateNestedManyWithoutProjectInput
+  requestLists?: Prisma.RequestListCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutProfilesInput = {
@@ -501,6 +527,7 @@ export type ProjectUncheckedCreateWithoutProfilesInput = {
   updatedAt?: Date | string
   contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutProjectInput
   maintenancePlans?: Prisma.MaintenancePlanUncheckedCreateNestedManyWithoutProjectInput
+  requestLists?: Prisma.RequestListUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutProfilesInput = {
@@ -526,6 +553,7 @@ export type ProjectUpdateWithoutProfilesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   contacts?: Prisma.ContactUpdateManyWithoutProjectNestedInput
   maintenancePlans?: Prisma.MaintenancePlanUpdateManyWithoutProjectNestedInput
+  requestLists?: Prisma.RequestListUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutProfilesInput = {
@@ -534,6 +562,65 @@ export type ProjectUncheckedUpdateWithoutProfilesInput = {
   nickName?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contacts?: Prisma.ContactUncheckedUpdateManyWithoutProjectNestedInput
+  maintenancePlans?: Prisma.MaintenancePlanUncheckedUpdateManyWithoutProjectNestedInput
+  requestLists?: Prisma.RequestListUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutRequestListsInput = {
+  name: string
+  nickName: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profiles?: Prisma.ProfileCreateNestedManyWithoutProjectInput
+  contacts?: Prisma.ContactCreateNestedManyWithoutProjectInput
+  maintenancePlans?: Prisma.MaintenancePlanCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectUncheckedCreateWithoutRequestListsInput = {
+  projectId?: number
+  name: string
+  nickName: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutProjectInput
+  contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutProjectInput
+  maintenancePlans?: Prisma.MaintenancePlanUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutRequestListsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutRequestListsInput, Prisma.ProjectUncheckedCreateWithoutRequestListsInput>
+}
+
+export type ProjectUpsertWithoutRequestListsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutRequestListsInput, Prisma.ProjectUncheckedUpdateWithoutRequestListsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutRequestListsInput, Prisma.ProjectUncheckedCreateWithoutRequestListsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutRequestListsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutRequestListsInput, Prisma.ProjectUncheckedUpdateWithoutRequestListsInput>
+}
+
+export type ProjectUpdateWithoutRequestListsInput = {
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nickName?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profiles?: Prisma.ProfileUpdateManyWithoutProjectNestedInput
+  contacts?: Prisma.ContactUpdateManyWithoutProjectNestedInput
+  maintenancePlans?: Prisma.MaintenancePlanUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutRequestListsInput = {
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  nickName?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profiles?: Prisma.ProfileUncheckedUpdateManyWithoutProjectNestedInput
   contacts?: Prisma.ContactUncheckedUpdateManyWithoutProjectNestedInput
   maintenancePlans?: Prisma.MaintenancePlanUncheckedUpdateManyWithoutProjectNestedInput
 }
@@ -545,6 +632,7 @@ export type ProjectCreateWithoutMaintenancePlansInput = {
   updatedAt?: Date | string
   profiles?: Prisma.ProfileCreateNestedManyWithoutProjectInput
   contacts?: Prisma.ContactCreateNestedManyWithoutProjectInput
+  requestLists?: Prisma.RequestListCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutMaintenancePlansInput = {
@@ -555,6 +643,7 @@ export type ProjectUncheckedCreateWithoutMaintenancePlansInput = {
   updatedAt?: Date | string
   profiles?: Prisma.ProfileUncheckedCreateNestedManyWithoutProjectInput
   contacts?: Prisma.ContactUncheckedCreateNestedManyWithoutProjectInput
+  requestLists?: Prisma.RequestListUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutMaintenancePlansInput = {
@@ -580,6 +669,7 @@ export type ProjectUpdateWithoutMaintenancePlansInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profiles?: Prisma.ProfileUpdateManyWithoutProjectNestedInput
   contacts?: Prisma.ContactUpdateManyWithoutProjectNestedInput
+  requestLists?: Prisma.RequestListUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutMaintenancePlansInput = {
@@ -590,6 +680,7 @@ export type ProjectUncheckedUpdateWithoutMaintenancePlansInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profiles?: Prisma.ProfileUncheckedUpdateManyWithoutProjectNestedInput
   contacts?: Prisma.ContactUncheckedUpdateManyWithoutProjectNestedInput
+  requestLists?: Prisma.RequestListUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 
@@ -601,12 +692,14 @@ export type ProjectCountOutputType = {
   profiles: number
   contacts: number
   maintenancePlans: number
+  requestLists: number
 }
 
 export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   profiles?: boolean | ProjectCountOutputTypeCountProfilesArgs
   contacts?: boolean | ProjectCountOutputTypeCountContactsArgs
   maintenancePlans?: boolean | ProjectCountOutputTypeCountMaintenancePlansArgs
+  requestLists?: boolean | ProjectCountOutputTypeCountRequestListsArgs
 }
 
 /**
@@ -640,6 +733,13 @@ export type ProjectCountOutputTypeCountMaintenancePlansArgs<ExtArgs extends runt
   where?: Prisma.MaintenancePlanWhereInput
 }
 
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountRequestListsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.RequestListWhereInput
+}
+
 
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   projectId?: boolean
@@ -650,6 +750,7 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   profiles?: boolean | Prisma.Project$profilesArgs<ExtArgs>
   contacts?: boolean | Prisma.Project$contactsArgs<ExtArgs>
   maintenancePlans?: boolean | Prisma.Project$maintenancePlansArgs<ExtArgs>
+  requestLists?: boolean | Prisma.Project$requestListsArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
@@ -668,6 +769,7 @@ export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   profiles?: boolean | Prisma.Project$profilesArgs<ExtArgs>
   contacts?: boolean | Prisma.Project$contactsArgs<ExtArgs>
   maintenancePlans?: boolean | Prisma.Project$maintenancePlansArgs<ExtArgs>
+  requestLists?: boolean | Prisma.Project$requestListsArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -677,6 +779,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     profiles: Prisma.$ProfilePayload<ExtArgs>[]
     contacts: Prisma.$ContactPayload<ExtArgs>[]
     maintenancePlans: Prisma.$MaintenancePlanPayload<ExtArgs>[]
+    requestLists: Prisma.$RequestListPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     projectId: number
@@ -1027,6 +1130,7 @@ export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.
   profiles<T extends Prisma.Project$profilesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$profilesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   contacts<T extends Prisma.Project$contactsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$contactsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContactPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   maintenancePlans<T extends Prisma.Project$maintenancePlansArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$maintenancePlansArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MaintenancePlanPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  requestLists<T extends Prisma.Project$requestListsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$requestListsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RequestListPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1478,6 +1582,30 @@ export type Project$maintenancePlansArgs<ExtArgs extends runtime.Types.Extension
   take?: number
   skip?: number
   distinct?: Prisma.MaintenancePlanScalarFieldEnum | Prisma.MaintenancePlanScalarFieldEnum[]
+}
+
+/**
+ * Project.requestLists
+ */
+export type Project$requestListsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the RequestList
+   */
+  select?: Prisma.RequestListSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the RequestList
+   */
+  omit?: Prisma.RequestListOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.RequestListInclude<ExtArgs> | null
+  where?: Prisma.RequestListWhereInput
+  orderBy?: Prisma.RequestListOrderByWithRelationInput | Prisma.RequestListOrderByWithRelationInput[]
+  cursor?: Prisma.RequestListWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.RequestListScalarFieldEnum | Prisma.RequestListScalarFieldEnum[]
 }
 
 /**

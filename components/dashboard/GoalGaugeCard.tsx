@@ -7,7 +7,7 @@ export function GoalGaugeCard({ title, percent }: GoalGaugeCardProps) {
   const dashOffset = circumference - (clamped / 100) * circumference;
 
   return (
-    <div className="bg-card text-card-text rounded-2xl border bordืer-border shadow-sm p-5 flex-1 flex flex-col">
+    <div className="bg-card text-card-text rounded-2xl border border-border shadow-sm p-5">
       <p className="text-sm font-semibold text-card-text mb-1">{title}</p>
 
       <div className="flex-1 flex items-center justify-center">

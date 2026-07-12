@@ -185,6 +185,8 @@ model History {
 
   registrationNumber String
 
+  calibrationId Int? @unique // ผูกกับผลสอบเทียบที่สร้างประวัติแถวนี้อัตโนมัติ (null = บันทึกด้วยมือ เช่น ย้าย location)
+
   actionDate DateTime
   actionType HistoryActionType
 
@@ -193,7 +195,8 @@ model History {
 
   remark String? @db.Text
 
-  profile Profile @relation(fields: [registrationNumber], references: [registrationNumber])
+  profile     Profile      @relation(fields: [registrationNumber], references: [registrationNumber])
+  calibration Calibration? @relation(fields: [calibrationId], references: [calibrationId])
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -218,6 +221,11 @@ model RequestList {
   updatedAt DateTime @updatedAt
 }
 
+enum RequirementType {
+  CAL
+  PM
+}
+
 model RequestDetail {
   requestDetailId Int @id @default(autoincrement())
 
@@ -227,7 +235,7 @@ model RequestDetail {
 
   operator String
 
-  requirementType String
+  requirementType RequirementType
 
   frequency Int
 
@@ -308,6 +316,7 @@ model Schedule {
   scheduledDate DateTime
 
   maintenanceDetail MaintenanceDetail @relation(fields: [maintenanceDetailId], references: [maintenanceDetailId])
+  calibration       Calibration?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -362,6 +371,7 @@ model Calibration {
 
   registrationNumber String
   maintenancePlanId  Int
+  scheduleId         Int @unique // ปิดรอบไหนของกำหนดการ (1 รอบ = ผลได้อย่างมาก 1 ใบ)
 
   certificateNo String  @db.VarChar(100)
   calibrationDate DateTime
@@ -384,10 +394,13 @@ model Calibration {
 
   profile         Profile         @relation(fields: [registrationNumber], references: [registrationNumber])
   maintenancePlan MaintenancePlan @relation(fields: [maintenancePlanId], references: [maintenancePlanId])
+  schedule        Schedule        @relation(fields: [scheduleId], references: [scheduleId])
 
   resultBalances           ResultBalance[]
   resultTemperatureSources ResultTemperatureSource[]
   resultPipettes           ResultPipette[]
+
+  history History?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

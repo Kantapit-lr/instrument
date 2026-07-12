@@ -24,3 +24,11 @@ export interface RequestListIdRouteParams {
 export interface MaintenancePlanIdRouteParams {
   params: Promise<{ id: string }>;
 }
+
+export interface HistoryIdRouteParams {
+  params: Promise<{ id: string }>;
+}
+
+export interface CalibrationIdRouteParams {
+  params: Promise<{ id: string }>;
+}

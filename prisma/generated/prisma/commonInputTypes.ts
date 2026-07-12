@@ -263,6 +263,23 @@ export type EnumHistoryActionTypeWithAggregatesFilter<$PrismaModel = never> = {
   _max?: Prisma.NestedEnumHistoryActionTypeFilter<$PrismaModel>
 }
 
+export type EnumRequirementTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.RequirementType | Prisma.EnumRequirementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.RequirementType[]
+  notIn?: $Enums.RequirementType[]
+  not?: Prisma.NestedEnumRequirementTypeFilter<$PrismaModel> | $Enums.RequirementType
+}
+
+export type EnumRequirementTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RequirementType | Prisma.EnumRequirementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.RequirementType[]
+  notIn?: $Enums.RequirementType[]
+  not?: Prisma.NestedEnumRequirementTypeWithAggregatesFilter<$PrismaModel> | $Enums.RequirementType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRequirementTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRequirementTypeFilter<$PrismaModel>
+}
+
 export type EnumCalibrationResultFilter<$PrismaModel = never> = {
   equals?: $Enums.CalibrationResult | Prisma.EnumCalibrationResultFieldRefInput<$PrismaModel>
   in?: $Enums.CalibrationResult[]
@@ -544,6 +561,23 @@ export type NestedEnumHistoryActionTypeWithAggregatesFilter<$PrismaModel = never
   _count?: Prisma.NestedIntFilter<$PrismaModel>
   _min?: Prisma.NestedEnumHistoryActionTypeFilter<$PrismaModel>
   _max?: Prisma.NestedEnumHistoryActionTypeFilter<$PrismaModel>
+}
+
+export type NestedEnumRequirementTypeFilter<$PrismaModel = never> = {
+  equals?: $Enums.RequirementType | Prisma.EnumRequirementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.RequirementType[]
+  notIn?: $Enums.RequirementType[]
+  not?: Prisma.NestedEnumRequirementTypeFilter<$PrismaModel> | $Enums.RequirementType
+}
+
+export type NestedEnumRequirementTypeWithAggregatesFilter<$PrismaModel = never> = {
+  equals?: $Enums.RequirementType | Prisma.EnumRequirementTypeFieldRefInput<$PrismaModel>
+  in?: $Enums.RequirementType[]
+  notIn?: $Enums.RequirementType[]
+  not?: Prisma.NestedEnumRequirementTypeWithAggregatesFilter<$PrismaModel> | $Enums.RequirementType
+  _count?: Prisma.NestedIntFilter<$PrismaModel>
+  _min?: Prisma.NestedEnumRequirementTypeFilter<$PrismaModel>
+  _max?: Prisma.NestedEnumRequirementTypeFilter<$PrismaModel>
 }
 
 export type NestedEnumCalibrationResultFilter<$PrismaModel = never> = {

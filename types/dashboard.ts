@@ -1,5 +1,6 @@
 export type CalibrationScheduleRow = {
   registrationNumber: string;
   instrumentName: string;
-  operator: string;
+  projectName: string;
+  scheduledDate: string;
 };

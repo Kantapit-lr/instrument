@@ -45,7 +45,7 @@ export type RequestDetailMinAggregateOutputType = {
   requestListId: number | null
   registrationNumber: string | null
   operator: string | null
-  requirementType: string | null
+  requirementType: $Enums.RequirementType | null
   frequency: number | null
   usagePeriod: string | null
   acceptableTolerance: runtime.Decimal | null
@@ -59,7 +59,7 @@ export type RequestDetailMaxAggregateOutputType = {
   requestListId: number | null
   registrationNumber: string | null
   operator: string | null
-  requirementType: string | null
+  requirementType: $Enums.RequirementType | null
   frequency: number | null
   usagePeriod: string | null
   acceptableTolerance: runtime.Decimal | null
@@ -232,7 +232,7 @@ export type RequestDetailGroupByOutputType = {
   requestListId: number
   registrationNumber: string
   operator: string
-  requirementType: string
+  requirementType: $Enums.RequirementType
   frequency: number
   usagePeriod: string
   acceptableTolerance: runtime.Decimal
@@ -269,7 +269,7 @@ export type RequestDetailWhereInput = {
   requestListId?: Prisma.IntFilter<"RequestDetail"> | number
   registrationNumber?: Prisma.StringFilter<"RequestDetail"> | string
   operator?: Prisma.StringFilter<"RequestDetail"> | string
-  requirementType?: Prisma.StringFilter<"RequestDetail"> | string
+  requirementType?: Prisma.EnumRequirementTypeFilter<"RequestDetail"> | $Enums.RequirementType
   frequency?: Prisma.IntFilter<"RequestDetail"> | number
   usagePeriod?: Prisma.StringFilter<"RequestDetail"> | string
   acceptableTolerance?: Prisma.DecimalFilter<"RequestDetail"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -305,7 +305,7 @@ export type RequestDetailWhereUniqueInput = Prisma.AtLeast<{
   requestListId?: Prisma.IntFilter<"RequestDetail"> | number
   registrationNumber?: Prisma.StringFilter<"RequestDetail"> | string
   operator?: Prisma.StringFilter<"RequestDetail"> | string
-  requirementType?: Prisma.StringFilter<"RequestDetail"> | string
+  requirementType?: Prisma.EnumRequirementTypeFilter<"RequestDetail"> | $Enums.RequirementType
   frequency?: Prisma.IntFilter<"RequestDetail"> | number
   usagePeriod?: Prisma.StringFilter<"RequestDetail"> | string
   acceptableTolerance?: Prisma.DecimalFilter<"RequestDetail"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -343,7 +343,7 @@ export type RequestDetailScalarWhereWithAggregatesInput = {
   requestListId?: Prisma.IntWithAggregatesFilter<"RequestDetail"> | number
   registrationNumber?: Prisma.StringWithAggregatesFilter<"RequestDetail"> | string
   operator?: Prisma.StringWithAggregatesFilter<"RequestDetail"> | string
-  requirementType?: Prisma.StringWithAggregatesFilter<"RequestDetail"> | string
+  requirementType?: Prisma.EnumRequirementTypeWithAggregatesFilter<"RequestDetail"> | $Enums.RequirementType
   frequency?: Prisma.IntWithAggregatesFilter<"RequestDetail"> | number
   usagePeriod?: Prisma.StringWithAggregatesFilter<"RequestDetail"> | string
   acceptableTolerance?: Prisma.DecimalWithAggregatesFilter<"RequestDetail"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -354,7 +354,7 @@ export type RequestDetailScalarWhereWithAggregatesInput = {
 
 export type RequestDetailCreateInput = {
   operator: string
-  requirementType: string
+  requirementType: $Enums.RequirementType
   frequency: number
   usagePeriod: string
   acceptableTolerance: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -370,7 +370,7 @@ export type RequestDetailUncheckedCreateInput = {
   requestListId: number
   registrationNumber: string
   operator: string
-  requirementType: string
+  requirementType: $Enums.RequirementType
   frequency: number
   usagePeriod: string
   acceptableTolerance: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -381,7 +381,7 @@ export type RequestDetailUncheckedCreateInput = {
 
 export type RequestDetailUpdateInput = {
   operator?: Prisma.StringFieldUpdateOperationsInput | string
-  requirementType?: Prisma.StringFieldUpdateOperationsInput | string
+  requirementType?: Prisma.EnumRequirementTypeFieldUpdateOperationsInput | $Enums.RequirementType
   frequency?: Prisma.IntFieldUpdateOperationsInput | number
   usagePeriod?: Prisma.StringFieldUpdateOperationsInput | string
   acceptableTolerance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -397,7 +397,7 @@ export type RequestDetailUncheckedUpdateInput = {
   requestListId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   operator?: Prisma.StringFieldUpdateOperationsInput | string
-  requirementType?: Prisma.StringFieldUpdateOperationsInput | string
+  requirementType?: Prisma.EnumRequirementTypeFieldUpdateOperationsInput | $Enums.RequirementType
   frequency?: Prisma.IntFieldUpdateOperationsInput | number
   usagePeriod?: Prisma.StringFieldUpdateOperationsInput | string
   acceptableTolerance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -411,7 +411,7 @@ export type RequestDetailCreateManyInput = {
   requestListId: number
   registrationNumber: string
   operator: string
-  requirementType: string
+  requirementType: $Enums.RequirementType
   frequency: number
   usagePeriod: string
   acceptableTolerance: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -422,7 +422,7 @@ export type RequestDetailCreateManyInput = {
 
 export type RequestDetailUpdateManyMutationInput = {
   operator?: Prisma.StringFieldUpdateOperationsInput | string
-  requirementType?: Prisma.StringFieldUpdateOperationsInput | string
+  requirementType?: Prisma.EnumRequirementTypeFieldUpdateOperationsInput | $Enums.RequirementType
   frequency?: Prisma.IntFieldUpdateOperationsInput | number
   usagePeriod?: Prisma.StringFieldUpdateOperationsInput | string
   acceptableTolerance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -436,7 +436,7 @@ export type RequestDetailUncheckedUpdateManyInput = {
   requestListId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   operator?: Prisma.StringFieldUpdateOperationsInput | string
-  requirementType?: Prisma.StringFieldUpdateOperationsInput | string
+  requirementType?: Prisma.EnumRequirementTypeFieldUpdateOperationsInput | $Enums.RequirementType
   frequency?: Prisma.IntFieldUpdateOperationsInput | number
   usagePeriod?: Prisma.StringFieldUpdateOperationsInput | string
   acceptableTolerance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -601,9 +601,13 @@ export type RequestDetailUncheckedUpdateManyWithoutRequestListNestedInput = {
   deleteMany?: Prisma.RequestDetailScalarWhereInput | Prisma.RequestDetailScalarWhereInput[]
 }
 
+export type EnumRequirementTypeFieldUpdateOperationsInput = {
+  set?: $Enums.RequirementType
+}
+
 export type RequestDetailCreateWithoutProfileInput = {
   operator: string
-  requirementType: string
+  requirementType: $Enums.RequirementType
   frequency: number
   usagePeriod: string
   acceptableTolerance: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -617,7 +621,7 @@ export type RequestDetailUncheckedCreateWithoutProfileInput = {
   requestDetailId?: number
   requestListId: number
   operator: string
-  requirementType: string
+  requirementType: $Enums.RequirementType
   frequency: number
   usagePeriod: string
   acceptableTolerance: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -660,7 +664,7 @@ export type RequestDetailScalarWhereInput = {
   requestListId?: Prisma.IntFilter<"RequestDetail"> | number
   registrationNumber?: Prisma.StringFilter<"RequestDetail"> | string
   operator?: Prisma.StringFilter<"RequestDetail"> | string
-  requirementType?: Prisma.StringFilter<"RequestDetail"> | string
+  requirementType?: Prisma.EnumRequirementTypeFilter<"RequestDetail"> | $Enums.RequirementType
   frequency?: Prisma.IntFilter<"RequestDetail"> | number
   usagePeriod?: Prisma.StringFilter<"RequestDetail"> | string
   acceptableTolerance?: Prisma.DecimalFilter<"RequestDetail"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -671,7 +675,7 @@ export type RequestDetailScalarWhereInput = {
 
 export type RequestDetailCreateWithoutRequestListInput = {
   operator: string
-  requirementType: string
+  requirementType: $Enums.RequirementType
   frequency: number
   usagePeriod: string
   acceptableTolerance: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -685,7 +689,7 @@ export type RequestDetailUncheckedCreateWithoutRequestListInput = {
   requestDetailId?: number
   registrationNumber: string
   operator: string
-  requirementType: string
+  requirementType: $Enums.RequirementType
   frequency: number
   usagePeriod: string
   acceptableTolerance: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -724,7 +728,7 @@ export type RequestDetailCreateManyProfileInput = {
   requestDetailId?: number
   requestListId: number
   operator: string
-  requirementType: string
+  requirementType: $Enums.RequirementType
   frequency: number
   usagePeriod: string
   acceptableTolerance: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -735,7 +739,7 @@ export type RequestDetailCreateManyProfileInput = {
 
 export type RequestDetailUpdateWithoutProfileInput = {
   operator?: Prisma.StringFieldUpdateOperationsInput | string
-  requirementType?: Prisma.StringFieldUpdateOperationsInput | string
+  requirementType?: Prisma.EnumRequirementTypeFieldUpdateOperationsInput | $Enums.RequirementType
   frequency?: Prisma.IntFieldUpdateOperationsInput | number
   usagePeriod?: Prisma.StringFieldUpdateOperationsInput | string
   acceptableTolerance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -749,7 +753,7 @@ export type RequestDetailUncheckedUpdateWithoutProfileInput = {
   requestDetailId?: Prisma.IntFieldUpdateOperationsInput | number
   requestListId?: Prisma.IntFieldUpdateOperationsInput | number
   operator?: Prisma.StringFieldUpdateOperationsInput | string
-  requirementType?: Prisma.StringFieldUpdateOperationsInput | string
+  requirementType?: Prisma.EnumRequirementTypeFieldUpdateOperationsInput | $Enums.RequirementType
   frequency?: Prisma.IntFieldUpdateOperationsInput | number
   usagePeriod?: Prisma.StringFieldUpdateOperationsInput | string
   acceptableTolerance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -762,7 +766,7 @@ export type RequestDetailUncheckedUpdateManyWithoutProfileInput = {
   requestDetailId?: Prisma.IntFieldUpdateOperationsInput | number
   requestListId?: Prisma.IntFieldUpdateOperationsInput | number
   operator?: Prisma.StringFieldUpdateOperationsInput | string
-  requirementType?: Prisma.StringFieldUpdateOperationsInput | string
+  requirementType?: Prisma.EnumRequirementTypeFieldUpdateOperationsInput | $Enums.RequirementType
   frequency?: Prisma.IntFieldUpdateOperationsInput | number
   usagePeriod?: Prisma.StringFieldUpdateOperationsInput | string
   acceptableTolerance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -775,7 +779,7 @@ export type RequestDetailCreateManyRequestListInput = {
   requestDetailId?: number
   registrationNumber: string
   operator: string
-  requirementType: string
+  requirementType: $Enums.RequirementType
   frequency: number
   usagePeriod: string
   acceptableTolerance: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -786,7 +790,7 @@ export type RequestDetailCreateManyRequestListInput = {
 
 export type RequestDetailUpdateWithoutRequestListInput = {
   operator?: Prisma.StringFieldUpdateOperationsInput | string
-  requirementType?: Prisma.StringFieldUpdateOperationsInput | string
+  requirementType?: Prisma.EnumRequirementTypeFieldUpdateOperationsInput | $Enums.RequirementType
   frequency?: Prisma.IntFieldUpdateOperationsInput | number
   usagePeriod?: Prisma.StringFieldUpdateOperationsInput | string
   acceptableTolerance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -800,7 +804,7 @@ export type RequestDetailUncheckedUpdateWithoutRequestListInput = {
   requestDetailId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   operator?: Prisma.StringFieldUpdateOperationsInput | string
-  requirementType?: Prisma.StringFieldUpdateOperationsInput | string
+  requirementType?: Prisma.EnumRequirementTypeFieldUpdateOperationsInput | $Enums.RequirementType
   frequency?: Prisma.IntFieldUpdateOperationsInput | number
   usagePeriod?: Prisma.StringFieldUpdateOperationsInput | string
   acceptableTolerance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -813,7 +817,7 @@ export type RequestDetailUncheckedUpdateManyWithoutRequestListInput = {
   requestDetailId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   operator?: Prisma.StringFieldUpdateOperationsInput | string
-  requirementType?: Prisma.StringFieldUpdateOperationsInput | string
+  requirementType?: Prisma.EnumRequirementTypeFieldUpdateOperationsInput | $Enums.RequirementType
   frequency?: Prisma.IntFieldUpdateOperationsInput | number
   usagePeriod?: Prisma.StringFieldUpdateOperationsInput | string
   acceptableTolerance?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -873,7 +877,7 @@ export type $RequestDetailPayload<ExtArgs extends runtime.Types.Extensions.Inter
     requestListId: number
     registrationNumber: string
     operator: string
-    requirementType: string
+    requirementType: $Enums.RequirementType
     frequency: number
     usagePeriod: string
     acceptableTolerance: runtime.Decimal
@@ -1255,7 +1259,7 @@ export interface RequestDetailFieldRefs {
   readonly requestListId: Prisma.FieldRef<"RequestDetail", 'Int'>
   readonly registrationNumber: Prisma.FieldRef<"RequestDetail", 'String'>
   readonly operator: Prisma.FieldRef<"RequestDetail", 'String'>
-  readonly requirementType: Prisma.FieldRef<"RequestDetail", 'String'>
+  readonly requirementType: Prisma.FieldRef<"RequestDetail", 'RequirementType'>
   readonly frequency: Prisma.FieldRef<"RequestDetail", 'Int'>
   readonly usagePeriod: Prisma.FieldRef<"RequestDetail", 'String'>
   readonly acceptableTolerance: Prisma.FieldRef<"RequestDetail", 'Decimal'>

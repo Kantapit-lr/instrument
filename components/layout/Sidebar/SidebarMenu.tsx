@@ -2,18 +2,19 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { SidebarMenuProps } from '@/types/components';
 
-export default function SidebarMenu() {
+export default function SidebarMenu({ onNavigate }: SidebarMenuProps) {
   const pathname = usePathname();
 
   const menuItems = [
     { name: 'Dashboard', href: '/' },
-    { name: 'New intrument', href: '/new-instrument' },
-    { name: 'Instruments', href: '/instruments' },
-    { name: 'Project', href: '/projects' },
-    { name: 'Annual Plan', href: '/annual-plans' },
-    { name: 'Schedules', href: '/schedules' },
-
+    { name: 'เพิ่มอุปกรณ์ใหม่', href: '/new-instrument' },
+    { name: 'อุปกรณ์ทั้งหมด', href: '/instruments' },
+    { name: 'จัดการโครงการ', href: '/projects' },
+    { name: 'แผนรายปี', href: '/annual-plans' },
+    { name: 'กำหนดการ', href: '/schedules' },
+    { name: 'บันทึกผลสอบเทียบ', href: '/calibrations' },
   ];
 
   return (
@@ -25,6 +26,7 @@ export default function SidebarMenu() {
           <Link
             key={item.href}
             href={item.href}
+            onClick={onNavigate}
             className={
               isActive
                 ? "flex items-center px-4 py-2.5 rounded-xl text-sm font-medium bg-mahidol-blue/10 text-mahidol-blue transition-colors"

@@ -1897,6 +1897,7 @@ export type SpecialCharacteristicScalarFieldEnum = (typeof SpecialCharacteristic
 export const HistoryScalarFieldEnum = {
   historyId: 'historyId',
   registrationNumber: 'registrationNumber',
+  calibrationId: 'calibrationId',
   actionDate: 'actionDate',
   actionType: 'actionType',
   detail: 'detail',
@@ -1911,6 +1912,7 @@ export type HistoryScalarFieldEnum = (typeof HistoryScalarFieldEnum)[keyof typeo
 
 export const RequestListScalarFieldEnum = {
   requestListId: 'requestListId',
+  projectId: 'projectId',
   year: 'year',
   operator: 'operator',
   status: 'status',
@@ -2016,6 +2018,7 @@ export const CalibrationScalarFieldEnum = {
   calibrationId: 'calibrationId',
   registrationNumber: 'registrationNumber',
   maintenancePlanId: 'maintenancePlanId',
+  scheduleId: 'scheduleId',
   certificateNo: 'certificateNo',
   calibrationDate: 'calibrationDate',
   isAccurate: 'isAccurate',
@@ -2205,7 +2208,6 @@ export type RequestListOrderByRelevanceFieldEnum = (typeof RequestListOrderByRel
 export const RequestDetailOrderByRelevanceFieldEnum = {
   registrationNumber: 'registrationNumber',
   operator: 'operator',
-  requirementType: 'requirementType',
   usagePeriod: 'usagePeriod',
   remark: 'remark'
 } as const
@@ -2344,6 +2346,13 @@ export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
  * Reference to a field of type 'HistoryActionType'
  */
 export type EnumHistoryActionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'HistoryActionType'>
+    
+
+
+/**
+ * Reference to a field of type 'RequirementType'
+ */
+export type EnumRequirementTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RequirementType'>
     
 
 

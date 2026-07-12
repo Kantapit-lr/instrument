@@ -204,6 +204,7 @@ export type SpecialCharacteristicScalarFieldEnum = (typeof SpecialCharacteristic
 export const HistoryScalarFieldEnum = {
   historyId: 'historyId',
   registrationNumber: 'registrationNumber',
+  calibrationId: 'calibrationId',
   actionDate: 'actionDate',
   actionType: 'actionType',
   detail: 'detail',
@@ -218,6 +219,7 @@ export type HistoryScalarFieldEnum = (typeof HistoryScalarFieldEnum)[keyof typeo
 
 export const RequestListScalarFieldEnum = {
   requestListId: 'requestListId',
+  projectId: 'projectId',
   year: 'year',
   operator: 'operator',
   status: 'status',
@@ -323,6 +325,7 @@ export const CalibrationScalarFieldEnum = {
   calibrationId: 'calibrationId',
   registrationNumber: 'registrationNumber',
   maintenancePlanId: 'maintenancePlanId',
+  scheduleId: 'scheduleId',
   certificateNo: 'certificateNo',
   calibrationDate: 'calibrationDate',
   isAccurate: 'isAccurate',
@@ -512,7 +515,6 @@ export type RequestListOrderByRelevanceFieldEnum = (typeof RequestListOrderByRel
 export const RequestDetailOrderByRelevanceFieldEnum = {
   registrationNumber: 'registrationNumber',
   operator: 'operator',
-  requirementType: 'requirementType',
   usagePeriod: 'usagePeriod',
   remark: 'remark'
 } as const

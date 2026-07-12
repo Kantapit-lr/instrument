@@ -1,6 +1,12 @@
 import { RequestDetailRowProps } from "@/types/components";
 import { Input } from "@/components/new-instrument/Input";
 import { SelectInput } from "@/components/new-instrument/SelectInput";
+import { SelectOption } from "@/types/instrument";
+
+const REQUIREMENT_TYPE_OPTIONS: SelectOption[] = [
+  { value: "CAL", label: "สอบเทียบ (CAL)" },
+  { value: "PM", label: "บำรุงรักษาเชิงป้องกัน (PM)" },
+];
 
 export function RequestDetailRow({
   detail,
@@ -34,6 +40,15 @@ export function RequestDetailRow({
           value={detail.registrationNumber}
           onChange={handleFieldChange}
           options={instrumentOptions}
+          required
+        />
+        <SelectInput
+          label="ประเภทงาน"
+          name="requirementType"
+          value={detail.requirementType}
+          onChange={handleFieldChange}
+          options={REQUIREMENT_TYPE_OPTIONS}
+          placeholder="เลือกประเภทงาน"
           required
         />
         <Input

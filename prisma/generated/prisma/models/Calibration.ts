@@ -29,17 +29,20 @@ export type AggregateCalibration = {
 export type CalibrationAvgAggregateOutputType = {
   calibrationId: number | null
   maintenancePlanId: number | null
+  scheduleId: number | null
 }
 
 export type CalibrationSumAggregateOutputType = {
   calibrationId: number | null
   maintenancePlanId: number | null
+  scheduleId: number | null
 }
 
 export type CalibrationMinAggregateOutputType = {
   calibrationId: number | null
   registrationNumber: string | null
   maintenancePlanId: number | null
+  scheduleId: number | null
   certificateNo: string | null
   calibrationDate: Date | null
   isAccurate: boolean | null
@@ -61,6 +64,7 @@ export type CalibrationMaxAggregateOutputType = {
   calibrationId: number | null
   registrationNumber: string | null
   maintenancePlanId: number | null
+  scheduleId: number | null
   certificateNo: string | null
   calibrationDate: Date | null
   isAccurate: boolean | null
@@ -82,6 +86,7 @@ export type CalibrationCountAggregateOutputType = {
   calibrationId: number
   registrationNumber: number
   maintenancePlanId: number
+  scheduleId: number
   certificateNo: number
   calibrationDate: number
   isAccurate: number
@@ -104,17 +109,20 @@ export type CalibrationCountAggregateOutputType = {
 export type CalibrationAvgAggregateInputType = {
   calibrationId?: true
   maintenancePlanId?: true
+  scheduleId?: true
 }
 
 export type CalibrationSumAggregateInputType = {
   calibrationId?: true
   maintenancePlanId?: true
+  scheduleId?: true
 }
 
 export type CalibrationMinAggregateInputType = {
   calibrationId?: true
   registrationNumber?: true
   maintenancePlanId?: true
+  scheduleId?: true
   certificateNo?: true
   calibrationDate?: true
   isAccurate?: true
@@ -136,6 +144,7 @@ export type CalibrationMaxAggregateInputType = {
   calibrationId?: true
   registrationNumber?: true
   maintenancePlanId?: true
+  scheduleId?: true
   certificateNo?: true
   calibrationDate?: true
   isAccurate?: true
@@ -157,6 +166,7 @@ export type CalibrationCountAggregateInputType = {
   calibrationId?: true
   registrationNumber?: true
   maintenancePlanId?: true
+  scheduleId?: true
   certificateNo?: true
   calibrationDate?: true
   isAccurate?: true
@@ -265,6 +275,7 @@ export type CalibrationGroupByOutputType = {
   calibrationId: number
   registrationNumber: string
   maintenancePlanId: number
+  scheduleId: number
   certificateNo: string
   calibrationDate: Date
   isAccurate: boolean
@@ -309,6 +320,7 @@ export type CalibrationWhereInput = {
   calibrationId?: Prisma.IntFilter<"Calibration"> | number
   registrationNumber?: Prisma.StringFilter<"Calibration"> | string
   maintenancePlanId?: Prisma.IntFilter<"Calibration"> | number
+  scheduleId?: Prisma.IntFilter<"Calibration"> | number
   certificateNo?: Prisma.StringFilter<"Calibration"> | string
   calibrationDate?: Prisma.DateTimeFilter<"Calibration"> | Date | string
   isAccurate?: Prisma.BoolFilter<"Calibration"> | boolean
@@ -326,15 +338,18 @@ export type CalibrationWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Calibration"> | Date | string
   profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
   maintenancePlan?: Prisma.XOR<Prisma.MaintenancePlanScalarRelationFilter, Prisma.MaintenancePlanWhereInput>
+  schedule?: Prisma.XOR<Prisma.ScheduleScalarRelationFilter, Prisma.ScheduleWhereInput>
   resultBalances?: Prisma.ResultBalanceListRelationFilter
   resultTemperatureSources?: Prisma.ResultTemperatureSourceListRelationFilter
   resultPipettes?: Prisma.ResultPipetteListRelationFilter
+  history?: Prisma.XOR<Prisma.HistoryNullableScalarRelationFilter, Prisma.HistoryWhereInput> | null
 }
 
 export type CalibrationOrderByWithRelationInput = {
   calibrationId?: Prisma.SortOrder
   registrationNumber?: Prisma.SortOrder
   maintenancePlanId?: Prisma.SortOrder
+  scheduleId?: Prisma.SortOrder
   certificateNo?: Prisma.SortOrder
   calibrationDate?: Prisma.SortOrder
   isAccurate?: Prisma.SortOrder
@@ -352,14 +367,17 @@ export type CalibrationOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   profile?: Prisma.ProfileOrderByWithRelationInput
   maintenancePlan?: Prisma.MaintenancePlanOrderByWithRelationInput
+  schedule?: Prisma.ScheduleOrderByWithRelationInput
   resultBalances?: Prisma.ResultBalanceOrderByRelationAggregateInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceOrderByRelationAggregateInput
   resultPipettes?: Prisma.ResultPipetteOrderByRelationAggregateInput
+  history?: Prisma.HistoryOrderByWithRelationInput
   _relevance?: Prisma.CalibrationOrderByRelevanceInput
 }
 
 export type CalibrationWhereUniqueInput = Prisma.AtLeast<{
   calibrationId?: number
+  scheduleId?: number
   AND?: Prisma.CalibrationWhereInput | Prisma.CalibrationWhereInput[]
   OR?: Prisma.CalibrationWhereInput[]
   NOT?: Prisma.CalibrationWhereInput | Prisma.CalibrationWhereInput[]
@@ -382,15 +400,18 @@ export type CalibrationWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Calibration"> | Date | string
   profile?: Prisma.XOR<Prisma.ProfileScalarRelationFilter, Prisma.ProfileWhereInput>
   maintenancePlan?: Prisma.XOR<Prisma.MaintenancePlanScalarRelationFilter, Prisma.MaintenancePlanWhereInput>
+  schedule?: Prisma.XOR<Prisma.ScheduleScalarRelationFilter, Prisma.ScheduleWhereInput>
   resultBalances?: Prisma.ResultBalanceListRelationFilter
   resultTemperatureSources?: Prisma.ResultTemperatureSourceListRelationFilter
   resultPipettes?: Prisma.ResultPipetteListRelationFilter
-}, "calibrationId">
+  history?: Prisma.XOR<Prisma.HistoryNullableScalarRelationFilter, Prisma.HistoryWhereInput> | null
+}, "calibrationId" | "scheduleId">
 
 export type CalibrationOrderByWithAggregationInput = {
   calibrationId?: Prisma.SortOrder
   registrationNumber?: Prisma.SortOrder
   maintenancePlanId?: Prisma.SortOrder
+  scheduleId?: Prisma.SortOrder
   certificateNo?: Prisma.SortOrder
   calibrationDate?: Prisma.SortOrder
   isAccurate?: Prisma.SortOrder
@@ -420,6 +441,7 @@ export type CalibrationScalarWhereWithAggregatesInput = {
   calibrationId?: Prisma.IntWithAggregatesFilter<"Calibration"> | number
   registrationNumber?: Prisma.StringWithAggregatesFilter<"Calibration"> | string
   maintenancePlanId?: Prisma.IntWithAggregatesFilter<"Calibration"> | number
+  scheduleId?: Prisma.IntWithAggregatesFilter<"Calibration"> | number
   certificateNo?: Prisma.StringWithAggregatesFilter<"Calibration"> | string
   calibrationDate?: Prisma.DateTimeWithAggregatesFilter<"Calibration"> | Date | string
   isAccurate?: Prisma.BoolWithAggregatesFilter<"Calibration"> | boolean
@@ -455,15 +477,18 @@ export type CalibrationCreateInput = {
   updatedAt?: Date | string
   profile: Prisma.ProfileCreateNestedOneWithoutCalibrationsInput
   maintenancePlan: Prisma.MaintenancePlanCreateNestedOneWithoutCalibrationsInput
+  schedule: Prisma.ScheduleCreateNestedOneWithoutCalibrationInput
   resultBalances?: Prisma.ResultBalanceCreateNestedManyWithoutCalibrationInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceCreateNestedManyWithoutCalibrationInput
   resultPipettes?: Prisma.ResultPipetteCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryCreateNestedOneWithoutCalibrationInput
 }
 
 export type CalibrationUncheckedCreateInput = {
   calibrationId?: number
   registrationNumber: string
   maintenancePlanId: number
+  scheduleId: number
   certificateNo: string
   calibrationDate: Date | string
   isAccurate: boolean
@@ -482,6 +507,7 @@ export type CalibrationUncheckedCreateInput = {
   resultBalances?: Prisma.ResultBalanceUncheckedCreateNestedManyWithoutCalibrationInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedCreateNestedManyWithoutCalibrationInput
   resultPipettes?: Prisma.ResultPipetteUncheckedCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryUncheckedCreateNestedOneWithoutCalibrationInput
 }
 
 export type CalibrationUpdateInput = {
@@ -502,15 +528,18 @@ export type CalibrationUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUpdateOneRequiredWithoutCalibrationsNestedInput
   maintenancePlan?: Prisma.MaintenancePlanUpdateOneRequiredWithoutCalibrationsNestedInput
+  schedule?: Prisma.ScheduleUpdateOneRequiredWithoutCalibrationNestedInput
   resultBalances?: Prisma.ResultBalanceUpdateManyWithoutCalibrationNestedInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUpdateManyWithoutCalibrationNestedInput
   resultPipettes?: Prisma.ResultPipetteUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationUncheckedUpdateInput = {
   calibrationId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   maintenancePlanId?: Prisma.IntFieldUpdateOperationsInput | number
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
   certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
   calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -529,12 +558,14 @@ export type CalibrationUncheckedUpdateInput = {
   resultBalances?: Prisma.ResultBalanceUncheckedUpdateManyWithoutCalibrationNestedInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedUpdateManyWithoutCalibrationNestedInput
   resultPipettes?: Prisma.ResultPipetteUncheckedUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUncheckedUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationCreateManyInput = {
   calibrationId?: number
   registrationNumber: string
   maintenancePlanId: number
+  scheduleId: number
   certificateNo: string
   calibrationDate: Date | string
   isAccurate: boolean
@@ -574,6 +605,7 @@ export type CalibrationUncheckedUpdateManyInput = {
   calibrationId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   maintenancePlanId?: Prisma.IntFieldUpdateOperationsInput | number
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
   certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
   calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -601,6 +633,11 @@ export type CalibrationOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type CalibrationNullableScalarRelationFilter = {
+  is?: Prisma.CalibrationWhereInput | null
+  isNot?: Prisma.CalibrationWhereInput | null
+}
+
 export type CalibrationOrderByRelevanceInput = {
   fields: Prisma.CalibrationOrderByRelevanceFieldEnum | Prisma.CalibrationOrderByRelevanceFieldEnum[]
   sort: Prisma.SortOrder
@@ -611,6 +648,7 @@ export type CalibrationCountOrderByAggregateInput = {
   calibrationId?: Prisma.SortOrder
   registrationNumber?: Prisma.SortOrder
   maintenancePlanId?: Prisma.SortOrder
+  scheduleId?: Prisma.SortOrder
   certificateNo?: Prisma.SortOrder
   calibrationDate?: Prisma.SortOrder
   isAccurate?: Prisma.SortOrder
@@ -631,12 +669,14 @@ export type CalibrationCountOrderByAggregateInput = {
 export type CalibrationAvgOrderByAggregateInput = {
   calibrationId?: Prisma.SortOrder
   maintenancePlanId?: Prisma.SortOrder
+  scheduleId?: Prisma.SortOrder
 }
 
 export type CalibrationMaxOrderByAggregateInput = {
   calibrationId?: Prisma.SortOrder
   registrationNumber?: Prisma.SortOrder
   maintenancePlanId?: Prisma.SortOrder
+  scheduleId?: Prisma.SortOrder
   certificateNo?: Prisma.SortOrder
   calibrationDate?: Prisma.SortOrder
   isAccurate?: Prisma.SortOrder
@@ -658,6 +698,7 @@ export type CalibrationMinOrderByAggregateInput = {
   calibrationId?: Prisma.SortOrder
   registrationNumber?: Prisma.SortOrder
   maintenancePlanId?: Prisma.SortOrder
+  scheduleId?: Prisma.SortOrder
   certificateNo?: Prisma.SortOrder
   calibrationDate?: Prisma.SortOrder
   isAccurate?: Prisma.SortOrder
@@ -678,6 +719,7 @@ export type CalibrationMinOrderByAggregateInput = {
 export type CalibrationSumOrderByAggregateInput = {
   calibrationId?: Prisma.SortOrder
   maintenancePlanId?: Prisma.SortOrder
+  scheduleId?: Prisma.SortOrder
 }
 
 export type CalibrationScalarRelationFilter = {
@@ -727,6 +769,22 @@ export type CalibrationUncheckedUpdateManyWithoutProfileNestedInput = {
   deleteMany?: Prisma.CalibrationScalarWhereInput | Prisma.CalibrationScalarWhereInput[]
 }
 
+export type CalibrationCreateNestedOneWithoutHistoryInput = {
+  create?: Prisma.XOR<Prisma.CalibrationCreateWithoutHistoryInput, Prisma.CalibrationUncheckedCreateWithoutHistoryInput>
+  connectOrCreate?: Prisma.CalibrationCreateOrConnectWithoutHistoryInput
+  connect?: Prisma.CalibrationWhereUniqueInput
+}
+
+export type CalibrationUpdateOneWithoutHistoryNestedInput = {
+  create?: Prisma.XOR<Prisma.CalibrationCreateWithoutHistoryInput, Prisma.CalibrationUncheckedCreateWithoutHistoryInput>
+  connectOrCreate?: Prisma.CalibrationCreateOrConnectWithoutHistoryInput
+  upsert?: Prisma.CalibrationUpsertWithoutHistoryInput
+  disconnect?: Prisma.CalibrationWhereInput | boolean
+  delete?: Prisma.CalibrationWhereInput | boolean
+  connect?: Prisma.CalibrationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CalibrationUpdateToOneWithWhereWithoutHistoryInput, Prisma.CalibrationUpdateWithoutHistoryInput>, Prisma.CalibrationUncheckedUpdateWithoutHistoryInput>
+}
+
 export type CalibrationCreateNestedManyWithoutMaintenancePlanInput = {
   create?: Prisma.XOR<Prisma.CalibrationCreateWithoutMaintenancePlanInput, Prisma.CalibrationUncheckedCreateWithoutMaintenancePlanInput> | Prisma.CalibrationCreateWithoutMaintenancePlanInput[] | Prisma.CalibrationUncheckedCreateWithoutMaintenancePlanInput[]
   connectOrCreate?: Prisma.CalibrationCreateOrConnectWithoutMaintenancePlanInput | Prisma.CalibrationCreateOrConnectWithoutMaintenancePlanInput[]
@@ -767,6 +825,38 @@ export type CalibrationUncheckedUpdateManyWithoutMaintenancePlanNestedInput = {
   update?: Prisma.CalibrationUpdateWithWhereUniqueWithoutMaintenancePlanInput | Prisma.CalibrationUpdateWithWhereUniqueWithoutMaintenancePlanInput[]
   updateMany?: Prisma.CalibrationUpdateManyWithWhereWithoutMaintenancePlanInput | Prisma.CalibrationUpdateManyWithWhereWithoutMaintenancePlanInput[]
   deleteMany?: Prisma.CalibrationScalarWhereInput | Prisma.CalibrationScalarWhereInput[]
+}
+
+export type CalibrationCreateNestedOneWithoutScheduleInput = {
+  create?: Prisma.XOR<Prisma.CalibrationCreateWithoutScheduleInput, Prisma.CalibrationUncheckedCreateWithoutScheduleInput>
+  connectOrCreate?: Prisma.CalibrationCreateOrConnectWithoutScheduleInput
+  connect?: Prisma.CalibrationWhereUniqueInput
+}
+
+export type CalibrationUncheckedCreateNestedOneWithoutScheduleInput = {
+  create?: Prisma.XOR<Prisma.CalibrationCreateWithoutScheduleInput, Prisma.CalibrationUncheckedCreateWithoutScheduleInput>
+  connectOrCreate?: Prisma.CalibrationCreateOrConnectWithoutScheduleInput
+  connect?: Prisma.CalibrationWhereUniqueInput
+}
+
+export type CalibrationUpdateOneWithoutScheduleNestedInput = {
+  create?: Prisma.XOR<Prisma.CalibrationCreateWithoutScheduleInput, Prisma.CalibrationUncheckedCreateWithoutScheduleInput>
+  connectOrCreate?: Prisma.CalibrationCreateOrConnectWithoutScheduleInput
+  upsert?: Prisma.CalibrationUpsertWithoutScheduleInput
+  disconnect?: Prisma.CalibrationWhereInput | boolean
+  delete?: Prisma.CalibrationWhereInput | boolean
+  connect?: Prisma.CalibrationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CalibrationUpdateToOneWithWhereWithoutScheduleInput, Prisma.CalibrationUpdateWithoutScheduleInput>, Prisma.CalibrationUncheckedUpdateWithoutScheduleInput>
+}
+
+export type CalibrationUncheckedUpdateOneWithoutScheduleNestedInput = {
+  create?: Prisma.XOR<Prisma.CalibrationCreateWithoutScheduleInput, Prisma.CalibrationUncheckedCreateWithoutScheduleInput>
+  connectOrCreate?: Prisma.CalibrationCreateOrConnectWithoutScheduleInput
+  upsert?: Prisma.CalibrationUpsertWithoutScheduleInput
+  disconnect?: Prisma.CalibrationWhereInput | boolean
+  delete?: Prisma.CalibrationWhereInput | boolean
+  connect?: Prisma.CalibrationWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.CalibrationUpdateToOneWithWhereWithoutScheduleInput, Prisma.CalibrationUpdateWithoutScheduleInput>, Prisma.CalibrationUncheckedUpdateWithoutScheduleInput>
 }
 
 export type EnumCalibrationResultFieldUpdateOperationsInput = {
@@ -832,14 +922,17 @@ export type CalibrationCreateWithoutProfileInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   maintenancePlan: Prisma.MaintenancePlanCreateNestedOneWithoutCalibrationsInput
+  schedule: Prisma.ScheduleCreateNestedOneWithoutCalibrationInput
   resultBalances?: Prisma.ResultBalanceCreateNestedManyWithoutCalibrationInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceCreateNestedManyWithoutCalibrationInput
   resultPipettes?: Prisma.ResultPipetteCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryCreateNestedOneWithoutCalibrationInput
 }
 
 export type CalibrationUncheckedCreateWithoutProfileInput = {
   calibrationId?: number
   maintenancePlanId: number
+  scheduleId: number
   certificateNo: string
   calibrationDate: Date | string
   isAccurate: boolean
@@ -858,6 +951,7 @@ export type CalibrationUncheckedCreateWithoutProfileInput = {
   resultBalances?: Prisma.ResultBalanceUncheckedCreateNestedManyWithoutCalibrationInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedCreateNestedManyWithoutCalibrationInput
   resultPipettes?: Prisma.ResultPipetteUncheckedCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryUncheckedCreateNestedOneWithoutCalibrationInput
 }
 
 export type CalibrationCreateOrConnectWithoutProfileInput = {
@@ -893,6 +987,7 @@ export type CalibrationScalarWhereInput = {
   calibrationId?: Prisma.IntFilter<"Calibration"> | number
   registrationNumber?: Prisma.StringFilter<"Calibration"> | string
   maintenancePlanId?: Prisma.IntFilter<"Calibration"> | number
+  scheduleId?: Prisma.IntFilter<"Calibration"> | number
   certificateNo?: Prisma.StringFilter<"Calibration"> | string
   calibrationDate?: Prisma.DateTimeFilter<"Calibration"> | Date | string
   isAccurate?: Prisma.BoolFilter<"Calibration"> | boolean
@@ -908,6 +1003,120 @@ export type CalibrationScalarWhereInput = {
   certificatePath?: Prisma.StringNullableFilter<"Calibration"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Calibration"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Calibration"> | Date | string
+}
+
+export type CalibrationCreateWithoutHistoryInput = {
+  certificateNo: string
+  calibrationDate: Date | string
+  isAccurate: boolean
+  isDocumentComplete: boolean
+  isInstrumentComplete: boolean
+  instrumentValue: string
+  mpe: string
+  summaryResult: $Enums.CalibrationResult
+  operator?: string | null
+  operatedAt?: Date | string | null
+  reviewer?: string | null
+  reviewedAt?: Date | string | null
+  certificatePath?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile: Prisma.ProfileCreateNestedOneWithoutCalibrationsInput
+  maintenancePlan: Prisma.MaintenancePlanCreateNestedOneWithoutCalibrationsInput
+  schedule: Prisma.ScheduleCreateNestedOneWithoutCalibrationInput
+  resultBalances?: Prisma.ResultBalanceCreateNestedManyWithoutCalibrationInput
+  resultTemperatureSources?: Prisma.ResultTemperatureSourceCreateNestedManyWithoutCalibrationInput
+  resultPipettes?: Prisma.ResultPipetteCreateNestedManyWithoutCalibrationInput
+}
+
+export type CalibrationUncheckedCreateWithoutHistoryInput = {
+  calibrationId?: number
+  registrationNumber: string
+  maintenancePlanId: number
+  scheduleId: number
+  certificateNo: string
+  calibrationDate: Date | string
+  isAccurate: boolean
+  isDocumentComplete: boolean
+  isInstrumentComplete: boolean
+  instrumentValue: string
+  mpe: string
+  summaryResult: $Enums.CalibrationResult
+  operator?: string | null
+  operatedAt?: Date | string | null
+  reviewer?: string | null
+  reviewedAt?: Date | string | null
+  certificatePath?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  resultBalances?: Prisma.ResultBalanceUncheckedCreateNestedManyWithoutCalibrationInput
+  resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedCreateNestedManyWithoutCalibrationInput
+  resultPipettes?: Prisma.ResultPipetteUncheckedCreateNestedManyWithoutCalibrationInput
+}
+
+export type CalibrationCreateOrConnectWithoutHistoryInput = {
+  where: Prisma.CalibrationWhereUniqueInput
+  create: Prisma.XOR<Prisma.CalibrationCreateWithoutHistoryInput, Prisma.CalibrationUncheckedCreateWithoutHistoryInput>
+}
+
+export type CalibrationUpsertWithoutHistoryInput = {
+  update: Prisma.XOR<Prisma.CalibrationUpdateWithoutHistoryInput, Prisma.CalibrationUncheckedUpdateWithoutHistoryInput>
+  create: Prisma.XOR<Prisma.CalibrationCreateWithoutHistoryInput, Prisma.CalibrationUncheckedCreateWithoutHistoryInput>
+  where?: Prisma.CalibrationWhereInput
+}
+
+export type CalibrationUpdateToOneWithWhereWithoutHistoryInput = {
+  where?: Prisma.CalibrationWhereInput
+  data: Prisma.XOR<Prisma.CalibrationUpdateWithoutHistoryInput, Prisma.CalibrationUncheckedUpdateWithoutHistoryInput>
+}
+
+export type CalibrationUpdateWithoutHistoryInput = {
+  certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDocumentComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isInstrumentComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  instrumentValue?: Prisma.StringFieldUpdateOperationsInput | string
+  mpe?: Prisma.StringFieldUpdateOperationsInput | string
+  summaryResult?: Prisma.EnumCalibrationResultFieldUpdateOperationsInput | $Enums.CalibrationResult
+  operator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  certificatePath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneRequiredWithoutCalibrationsNestedInput
+  maintenancePlan?: Prisma.MaintenancePlanUpdateOneRequiredWithoutCalibrationsNestedInput
+  schedule?: Prisma.ScheduleUpdateOneRequiredWithoutCalibrationNestedInput
+  resultBalances?: Prisma.ResultBalanceUpdateManyWithoutCalibrationNestedInput
+  resultTemperatureSources?: Prisma.ResultTemperatureSourceUpdateManyWithoutCalibrationNestedInput
+  resultPipettes?: Prisma.ResultPipetteUpdateManyWithoutCalibrationNestedInput
+}
+
+export type CalibrationUncheckedUpdateWithoutHistoryInput = {
+  calibrationId?: Prisma.IntFieldUpdateOperationsInput | number
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  maintenancePlanId?: Prisma.IntFieldUpdateOperationsInput | number
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
+  certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDocumentComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isInstrumentComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  instrumentValue?: Prisma.StringFieldUpdateOperationsInput | string
+  mpe?: Prisma.StringFieldUpdateOperationsInput | string
+  summaryResult?: Prisma.EnumCalibrationResultFieldUpdateOperationsInput | $Enums.CalibrationResult
+  operator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  certificatePath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  resultBalances?: Prisma.ResultBalanceUncheckedUpdateManyWithoutCalibrationNestedInput
+  resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedUpdateManyWithoutCalibrationNestedInput
+  resultPipettes?: Prisma.ResultPipetteUncheckedUpdateManyWithoutCalibrationNestedInput
 }
 
 export type CalibrationCreateWithoutMaintenancePlanInput = {
@@ -927,14 +1136,17 @@ export type CalibrationCreateWithoutMaintenancePlanInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   profile: Prisma.ProfileCreateNestedOneWithoutCalibrationsInput
+  schedule: Prisma.ScheduleCreateNestedOneWithoutCalibrationInput
   resultBalances?: Prisma.ResultBalanceCreateNestedManyWithoutCalibrationInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceCreateNestedManyWithoutCalibrationInput
   resultPipettes?: Prisma.ResultPipetteCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryCreateNestedOneWithoutCalibrationInput
 }
 
 export type CalibrationUncheckedCreateWithoutMaintenancePlanInput = {
   calibrationId?: number
   registrationNumber: string
+  scheduleId: number
   certificateNo: string
   calibrationDate: Date | string
   isAccurate: boolean
@@ -953,6 +1165,7 @@ export type CalibrationUncheckedCreateWithoutMaintenancePlanInput = {
   resultBalances?: Prisma.ResultBalanceUncheckedCreateNestedManyWithoutCalibrationInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedCreateNestedManyWithoutCalibrationInput
   resultPipettes?: Prisma.ResultPipetteUncheckedCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryUncheckedCreateNestedOneWithoutCalibrationInput
 }
 
 export type CalibrationCreateOrConnectWithoutMaintenancePlanInput = {
@@ -981,7 +1194,7 @@ export type CalibrationUpdateManyWithWhereWithoutMaintenancePlanInput = {
   data: Prisma.XOR<Prisma.CalibrationUpdateManyMutationInput, Prisma.CalibrationUncheckedUpdateManyWithoutMaintenancePlanInput>
 }
 
-export type CalibrationCreateWithoutResultBalancesInput = {
+export type CalibrationCreateWithoutScheduleInput = {
   certificateNo: string
   calibrationDate: Date | string
   isAccurate: boolean
@@ -999,11 +1212,13 @@ export type CalibrationCreateWithoutResultBalancesInput = {
   updatedAt?: Date | string
   profile: Prisma.ProfileCreateNestedOneWithoutCalibrationsInput
   maintenancePlan: Prisma.MaintenancePlanCreateNestedOneWithoutCalibrationsInput
+  resultBalances?: Prisma.ResultBalanceCreateNestedManyWithoutCalibrationInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceCreateNestedManyWithoutCalibrationInput
   resultPipettes?: Prisma.ResultPipetteCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryCreateNestedOneWithoutCalibrationInput
 }
 
-export type CalibrationUncheckedCreateWithoutResultBalancesInput = {
+export type CalibrationUncheckedCreateWithoutScheduleInput = {
   calibrationId?: number
   registrationNumber: string
   maintenancePlanId: number
@@ -1022,8 +1237,124 @@ export type CalibrationUncheckedCreateWithoutResultBalancesInput = {
   certificatePath?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  resultBalances?: Prisma.ResultBalanceUncheckedCreateNestedManyWithoutCalibrationInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedCreateNestedManyWithoutCalibrationInput
   resultPipettes?: Prisma.ResultPipetteUncheckedCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryUncheckedCreateNestedOneWithoutCalibrationInput
+}
+
+export type CalibrationCreateOrConnectWithoutScheduleInput = {
+  where: Prisma.CalibrationWhereUniqueInput
+  create: Prisma.XOR<Prisma.CalibrationCreateWithoutScheduleInput, Prisma.CalibrationUncheckedCreateWithoutScheduleInput>
+}
+
+export type CalibrationUpsertWithoutScheduleInput = {
+  update: Prisma.XOR<Prisma.CalibrationUpdateWithoutScheduleInput, Prisma.CalibrationUncheckedUpdateWithoutScheduleInput>
+  create: Prisma.XOR<Prisma.CalibrationCreateWithoutScheduleInput, Prisma.CalibrationUncheckedCreateWithoutScheduleInput>
+  where?: Prisma.CalibrationWhereInput
+}
+
+export type CalibrationUpdateToOneWithWhereWithoutScheduleInput = {
+  where?: Prisma.CalibrationWhereInput
+  data: Prisma.XOR<Prisma.CalibrationUpdateWithoutScheduleInput, Prisma.CalibrationUncheckedUpdateWithoutScheduleInput>
+}
+
+export type CalibrationUpdateWithoutScheduleInput = {
+  certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDocumentComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isInstrumentComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  instrumentValue?: Prisma.StringFieldUpdateOperationsInput | string
+  mpe?: Prisma.StringFieldUpdateOperationsInput | string
+  summaryResult?: Prisma.EnumCalibrationResultFieldUpdateOperationsInput | $Enums.CalibrationResult
+  operator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  certificatePath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  profile?: Prisma.ProfileUpdateOneRequiredWithoutCalibrationsNestedInput
+  maintenancePlan?: Prisma.MaintenancePlanUpdateOneRequiredWithoutCalibrationsNestedInput
+  resultBalances?: Prisma.ResultBalanceUpdateManyWithoutCalibrationNestedInput
+  resultTemperatureSources?: Prisma.ResultTemperatureSourceUpdateManyWithoutCalibrationNestedInput
+  resultPipettes?: Prisma.ResultPipetteUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUpdateOneWithoutCalibrationNestedInput
+}
+
+export type CalibrationUncheckedUpdateWithoutScheduleInput = {
+  calibrationId?: Prisma.IntFieldUpdateOperationsInput | number
+  registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  maintenancePlanId?: Prisma.IntFieldUpdateOperationsInput | number
+  certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
+  calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isDocumentComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isInstrumentComplete?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  instrumentValue?: Prisma.StringFieldUpdateOperationsInput | string
+  mpe?: Prisma.StringFieldUpdateOperationsInput | string
+  summaryResult?: Prisma.EnumCalibrationResultFieldUpdateOperationsInput | $Enums.CalibrationResult
+  operator?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  operatedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  reviewer?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  certificatePath?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  resultBalances?: Prisma.ResultBalanceUncheckedUpdateManyWithoutCalibrationNestedInput
+  resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedUpdateManyWithoutCalibrationNestedInput
+  resultPipettes?: Prisma.ResultPipetteUncheckedUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUncheckedUpdateOneWithoutCalibrationNestedInput
+}
+
+export type CalibrationCreateWithoutResultBalancesInput = {
+  certificateNo: string
+  calibrationDate: Date | string
+  isAccurate: boolean
+  isDocumentComplete: boolean
+  isInstrumentComplete: boolean
+  instrumentValue: string
+  mpe: string
+  summaryResult: $Enums.CalibrationResult
+  operator?: string | null
+  operatedAt?: Date | string | null
+  reviewer?: string | null
+  reviewedAt?: Date | string | null
+  certificatePath?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  profile: Prisma.ProfileCreateNestedOneWithoutCalibrationsInput
+  maintenancePlan: Prisma.MaintenancePlanCreateNestedOneWithoutCalibrationsInput
+  schedule: Prisma.ScheduleCreateNestedOneWithoutCalibrationInput
+  resultTemperatureSources?: Prisma.ResultTemperatureSourceCreateNestedManyWithoutCalibrationInput
+  resultPipettes?: Prisma.ResultPipetteCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryCreateNestedOneWithoutCalibrationInput
+}
+
+export type CalibrationUncheckedCreateWithoutResultBalancesInput = {
+  calibrationId?: number
+  registrationNumber: string
+  maintenancePlanId: number
+  scheduleId: number
+  certificateNo: string
+  calibrationDate: Date | string
+  isAccurate: boolean
+  isDocumentComplete: boolean
+  isInstrumentComplete: boolean
+  instrumentValue: string
+  mpe: string
+  summaryResult: $Enums.CalibrationResult
+  operator?: string | null
+  operatedAt?: Date | string | null
+  reviewer?: string | null
+  reviewedAt?: Date | string | null
+  certificatePath?: string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedCreateNestedManyWithoutCalibrationInput
+  resultPipettes?: Prisma.ResultPipetteUncheckedCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryUncheckedCreateNestedOneWithoutCalibrationInput
 }
 
 export type CalibrationCreateOrConnectWithoutResultBalancesInput = {
@@ -1060,14 +1391,17 @@ export type CalibrationUpdateWithoutResultBalancesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUpdateOneRequiredWithoutCalibrationsNestedInput
   maintenancePlan?: Prisma.MaintenancePlanUpdateOneRequiredWithoutCalibrationsNestedInput
+  schedule?: Prisma.ScheduleUpdateOneRequiredWithoutCalibrationNestedInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUpdateManyWithoutCalibrationNestedInput
   resultPipettes?: Prisma.ResultPipetteUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationUncheckedUpdateWithoutResultBalancesInput = {
   calibrationId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   maintenancePlanId?: Prisma.IntFieldUpdateOperationsInput | number
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
   certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
   calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1085,6 +1419,7 @@ export type CalibrationUncheckedUpdateWithoutResultBalancesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedUpdateManyWithoutCalibrationNestedInput
   resultPipettes?: Prisma.ResultPipetteUncheckedUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUncheckedUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationCreateWithoutResultTemperatureSourcesInput = {
@@ -1105,14 +1440,17 @@ export type CalibrationCreateWithoutResultTemperatureSourcesInput = {
   updatedAt?: Date | string
   profile: Prisma.ProfileCreateNestedOneWithoutCalibrationsInput
   maintenancePlan: Prisma.MaintenancePlanCreateNestedOneWithoutCalibrationsInput
+  schedule: Prisma.ScheduleCreateNestedOneWithoutCalibrationInput
   resultBalances?: Prisma.ResultBalanceCreateNestedManyWithoutCalibrationInput
   resultPipettes?: Prisma.ResultPipetteCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryCreateNestedOneWithoutCalibrationInput
 }
 
 export type CalibrationUncheckedCreateWithoutResultTemperatureSourcesInput = {
   calibrationId?: number
   registrationNumber: string
   maintenancePlanId: number
+  scheduleId: number
   certificateNo: string
   calibrationDate: Date | string
   isAccurate: boolean
@@ -1130,6 +1468,7 @@ export type CalibrationUncheckedCreateWithoutResultTemperatureSourcesInput = {
   updatedAt?: Date | string
   resultBalances?: Prisma.ResultBalanceUncheckedCreateNestedManyWithoutCalibrationInput
   resultPipettes?: Prisma.ResultPipetteUncheckedCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryUncheckedCreateNestedOneWithoutCalibrationInput
 }
 
 export type CalibrationCreateOrConnectWithoutResultTemperatureSourcesInput = {
@@ -1166,14 +1505,17 @@ export type CalibrationUpdateWithoutResultTemperatureSourcesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUpdateOneRequiredWithoutCalibrationsNestedInput
   maintenancePlan?: Prisma.MaintenancePlanUpdateOneRequiredWithoutCalibrationsNestedInput
+  schedule?: Prisma.ScheduleUpdateOneRequiredWithoutCalibrationNestedInput
   resultBalances?: Prisma.ResultBalanceUpdateManyWithoutCalibrationNestedInput
   resultPipettes?: Prisma.ResultPipetteUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationUncheckedUpdateWithoutResultTemperatureSourcesInput = {
   calibrationId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   maintenancePlanId?: Prisma.IntFieldUpdateOperationsInput | number
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
   certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
   calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1191,6 +1533,7 @@ export type CalibrationUncheckedUpdateWithoutResultTemperatureSourcesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resultBalances?: Prisma.ResultBalanceUncheckedUpdateManyWithoutCalibrationNestedInput
   resultPipettes?: Prisma.ResultPipetteUncheckedUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUncheckedUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationCreateWithoutResultPipettesInput = {
@@ -1211,14 +1554,17 @@ export type CalibrationCreateWithoutResultPipettesInput = {
   updatedAt?: Date | string
   profile: Prisma.ProfileCreateNestedOneWithoutCalibrationsInput
   maintenancePlan: Prisma.MaintenancePlanCreateNestedOneWithoutCalibrationsInput
+  schedule: Prisma.ScheduleCreateNestedOneWithoutCalibrationInput
   resultBalances?: Prisma.ResultBalanceCreateNestedManyWithoutCalibrationInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryCreateNestedOneWithoutCalibrationInput
 }
 
 export type CalibrationUncheckedCreateWithoutResultPipettesInput = {
   calibrationId?: number
   registrationNumber: string
   maintenancePlanId: number
+  scheduleId: number
   certificateNo: string
   calibrationDate: Date | string
   isAccurate: boolean
@@ -1236,6 +1582,7 @@ export type CalibrationUncheckedCreateWithoutResultPipettesInput = {
   updatedAt?: Date | string
   resultBalances?: Prisma.ResultBalanceUncheckedCreateNestedManyWithoutCalibrationInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedCreateNestedManyWithoutCalibrationInput
+  history?: Prisma.HistoryUncheckedCreateNestedOneWithoutCalibrationInput
 }
 
 export type CalibrationCreateOrConnectWithoutResultPipettesInput = {
@@ -1272,14 +1619,17 @@ export type CalibrationUpdateWithoutResultPipettesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUpdateOneRequiredWithoutCalibrationsNestedInput
   maintenancePlan?: Prisma.MaintenancePlanUpdateOneRequiredWithoutCalibrationsNestedInput
+  schedule?: Prisma.ScheduleUpdateOneRequiredWithoutCalibrationNestedInput
   resultBalances?: Prisma.ResultBalanceUpdateManyWithoutCalibrationNestedInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationUncheckedUpdateWithoutResultPipettesInput = {
   calibrationId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
   maintenancePlanId?: Prisma.IntFieldUpdateOperationsInput | number
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
   certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
   calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1297,11 +1647,13 @@ export type CalibrationUncheckedUpdateWithoutResultPipettesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   resultBalances?: Prisma.ResultBalanceUncheckedUpdateManyWithoutCalibrationNestedInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUncheckedUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationCreateManyProfileInput = {
   calibrationId?: number
   maintenancePlanId: number
+  scheduleId: number
   certificateNo: string
   calibrationDate: Date | string
   isAccurate: boolean
@@ -1336,14 +1688,17 @@ export type CalibrationUpdateWithoutProfileInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   maintenancePlan?: Prisma.MaintenancePlanUpdateOneRequiredWithoutCalibrationsNestedInput
+  schedule?: Prisma.ScheduleUpdateOneRequiredWithoutCalibrationNestedInput
   resultBalances?: Prisma.ResultBalanceUpdateManyWithoutCalibrationNestedInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUpdateManyWithoutCalibrationNestedInput
   resultPipettes?: Prisma.ResultPipetteUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationUncheckedUpdateWithoutProfileInput = {
   calibrationId?: Prisma.IntFieldUpdateOperationsInput | number
   maintenancePlanId?: Prisma.IntFieldUpdateOperationsInput | number
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
   certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
   calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1362,11 +1717,13 @@ export type CalibrationUncheckedUpdateWithoutProfileInput = {
   resultBalances?: Prisma.ResultBalanceUncheckedUpdateManyWithoutCalibrationNestedInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedUpdateManyWithoutCalibrationNestedInput
   resultPipettes?: Prisma.ResultPipetteUncheckedUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUncheckedUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationUncheckedUpdateManyWithoutProfileInput = {
   calibrationId?: Prisma.IntFieldUpdateOperationsInput | number
   maintenancePlanId?: Prisma.IntFieldUpdateOperationsInput | number
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
   certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
   calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1387,6 +1744,7 @@ export type CalibrationUncheckedUpdateManyWithoutProfileInput = {
 export type CalibrationCreateManyMaintenancePlanInput = {
   calibrationId?: number
   registrationNumber: string
+  scheduleId: number
   certificateNo: string
   calibrationDate: Date | string
   isAccurate: boolean
@@ -1421,14 +1779,17 @@ export type CalibrationUpdateWithoutMaintenancePlanInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   profile?: Prisma.ProfileUpdateOneRequiredWithoutCalibrationsNestedInput
+  schedule?: Prisma.ScheduleUpdateOneRequiredWithoutCalibrationNestedInput
   resultBalances?: Prisma.ResultBalanceUpdateManyWithoutCalibrationNestedInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUpdateManyWithoutCalibrationNestedInput
   resultPipettes?: Prisma.ResultPipetteUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationUncheckedUpdateWithoutMaintenancePlanInput = {
   calibrationId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
   certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
   calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1447,11 +1808,13 @@ export type CalibrationUncheckedUpdateWithoutMaintenancePlanInput = {
   resultBalances?: Prisma.ResultBalanceUncheckedUpdateManyWithoutCalibrationNestedInput
   resultTemperatureSources?: Prisma.ResultTemperatureSourceUncheckedUpdateManyWithoutCalibrationNestedInput
   resultPipettes?: Prisma.ResultPipetteUncheckedUpdateManyWithoutCalibrationNestedInput
+  history?: Prisma.HistoryUncheckedUpdateOneWithoutCalibrationNestedInput
 }
 
 export type CalibrationUncheckedUpdateManyWithoutMaintenancePlanInput = {
   calibrationId?: Prisma.IntFieldUpdateOperationsInput | number
   registrationNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
   certificateNo?: Prisma.StringFieldUpdateOperationsInput | string
   calibrationDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   isAccurate?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -1522,6 +1885,7 @@ export type CalibrationSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   calibrationId?: boolean
   registrationNumber?: boolean
   maintenancePlanId?: boolean
+  scheduleId?: boolean
   certificateNo?: boolean
   calibrationDate?: boolean
   isAccurate?: boolean
@@ -1539,9 +1903,11 @@ export type CalibrationSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   updatedAt?: boolean
   profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
   maintenancePlan?: boolean | Prisma.MaintenancePlanDefaultArgs<ExtArgs>
+  schedule?: boolean | Prisma.ScheduleDefaultArgs<ExtArgs>
   resultBalances?: boolean | Prisma.Calibration$resultBalancesArgs<ExtArgs>
   resultTemperatureSources?: boolean | Prisma.Calibration$resultTemperatureSourcesArgs<ExtArgs>
   resultPipettes?: boolean | Prisma.Calibration$resultPipettesArgs<ExtArgs>
+  history?: boolean | Prisma.Calibration$historyArgs<ExtArgs>
   _count?: boolean | Prisma.CalibrationCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["calibration"]>
 
@@ -1551,6 +1917,7 @@ export type CalibrationSelectScalar = {
   calibrationId?: boolean
   registrationNumber?: boolean
   maintenancePlanId?: boolean
+  scheduleId?: boolean
   certificateNo?: boolean
   calibrationDate?: boolean
   isAccurate?: boolean
@@ -1568,13 +1935,15 @@ export type CalibrationSelectScalar = {
   updatedAt?: boolean
 }
 
-export type CalibrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"calibrationId" | "registrationNumber" | "maintenancePlanId" | "certificateNo" | "calibrationDate" | "isAccurate" | "isDocumentComplete" | "isInstrumentComplete" | "instrumentValue" | "mpe" | "summaryResult" | "operator" | "operatedAt" | "reviewer" | "reviewedAt" | "certificatePath" | "createdAt" | "updatedAt", ExtArgs["result"]["calibration"]>
+export type CalibrationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"calibrationId" | "registrationNumber" | "maintenancePlanId" | "scheduleId" | "certificateNo" | "calibrationDate" | "isAccurate" | "isDocumentComplete" | "isInstrumentComplete" | "instrumentValue" | "mpe" | "summaryResult" | "operator" | "operatedAt" | "reviewer" | "reviewedAt" | "certificatePath" | "createdAt" | "updatedAt", ExtArgs["result"]["calibration"]>
 export type CalibrationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   profile?: boolean | Prisma.ProfileDefaultArgs<ExtArgs>
   maintenancePlan?: boolean | Prisma.MaintenancePlanDefaultArgs<ExtArgs>
+  schedule?: boolean | Prisma.ScheduleDefaultArgs<ExtArgs>
   resultBalances?: boolean | Prisma.Calibration$resultBalancesArgs<ExtArgs>
   resultTemperatureSources?: boolean | Prisma.Calibration$resultTemperatureSourcesArgs<ExtArgs>
   resultPipettes?: boolean | Prisma.Calibration$resultPipettesArgs<ExtArgs>
+  history?: boolean | Prisma.Calibration$historyArgs<ExtArgs>
   _count?: boolean | Prisma.CalibrationCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -1583,14 +1952,17 @@ export type $CalibrationPayload<ExtArgs extends runtime.Types.Extensions.Interna
   objects: {
     profile: Prisma.$ProfilePayload<ExtArgs>
     maintenancePlan: Prisma.$MaintenancePlanPayload<ExtArgs>
+    schedule: Prisma.$SchedulePayload<ExtArgs>
     resultBalances: Prisma.$ResultBalancePayload<ExtArgs>[]
     resultTemperatureSources: Prisma.$ResultTemperatureSourcePayload<ExtArgs>[]
     resultPipettes: Prisma.$ResultPipettePayload<ExtArgs>[]
+    history: Prisma.$HistoryPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     calibrationId: number
     registrationNumber: string
     maintenancePlanId: number
+    scheduleId: number
     certificateNo: string
     calibrationDate: Date
     isAccurate: boolean
@@ -1948,9 +2320,11 @@ export interface Prisma__CalibrationClient<T, Null = never, ExtArgs extends runt
   readonly [Symbol.toStringTag]: "PrismaPromise"
   profile<T extends Prisma.ProfileDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProfileDefaultArgs<ExtArgs>>): Prisma.Prisma__ProfileClient<runtime.Types.Result.GetResult<Prisma.$ProfilePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   maintenancePlan<T extends Prisma.MaintenancePlanDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MaintenancePlanDefaultArgs<ExtArgs>>): Prisma.Prisma__MaintenancePlanClient<runtime.Types.Result.GetResult<Prisma.$MaintenancePlanPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  schedule<T extends Prisma.ScheduleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ScheduleDefaultArgs<ExtArgs>>): Prisma.Prisma__ScheduleClient<runtime.Types.Result.GetResult<Prisma.$SchedulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   resultBalances<T extends Prisma.Calibration$resultBalancesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Calibration$resultBalancesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResultBalancePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   resultTemperatureSources<T extends Prisma.Calibration$resultTemperatureSourcesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Calibration$resultTemperatureSourcesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResultTemperatureSourcePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   resultPipettes<T extends Prisma.Calibration$resultPipettesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Calibration$resultPipettesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ResultPipettePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  history<T extends Prisma.Calibration$historyArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Calibration$historyArgs<ExtArgs>>): Prisma.Prisma__HistoryClient<runtime.Types.Result.GetResult<Prisma.$HistoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1983,6 +2357,7 @@ export interface CalibrationFieldRefs {
   readonly calibrationId: Prisma.FieldRef<"Calibration", 'Int'>
   readonly registrationNumber: Prisma.FieldRef<"Calibration", 'String'>
   readonly maintenancePlanId: Prisma.FieldRef<"Calibration", 'Int'>
+  readonly scheduleId: Prisma.FieldRef<"Calibration", 'Int'>
   readonly certificateNo: Prisma.FieldRef<"Calibration", 'String'>
   readonly calibrationDate: Prisma.FieldRef<"Calibration", 'DateTime'>
   readonly isAccurate: Prisma.FieldRef<"Calibration", 'Boolean'>
@@ -2415,6 +2790,25 @@ export type Calibration$resultPipettesArgs<ExtArgs extends runtime.Types.Extensi
   take?: number
   skip?: number
   distinct?: Prisma.ResultPipetteScalarFieldEnum | Prisma.ResultPipetteScalarFieldEnum[]
+}
+
+/**
+ * Calibration.history
+ */
+export type Calibration$historyArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the History
+   */
+  select?: Prisma.HistorySelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the History
+   */
+  omit?: Prisma.HistoryOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.HistoryInclude<ExtArgs> | null
+  where?: Prisma.HistoryWhereInput
 }
 
 /**

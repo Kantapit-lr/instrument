@@ -34,3 +34,11 @@ export const CalibrationResult = {
 } as const
 
 export type CalibrationResult = (typeof CalibrationResult)[keyof typeof CalibrationResult]
+
+
+export const RequirementType = {
+  CAL: 'CAL',
+  PM: 'PM'
+} as const
+
+export type RequirementType = (typeof RequirementType)[keyof typeof RequirementType]

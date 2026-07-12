@@ -233,6 +233,7 @@ export type ScheduleWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   maintenanceDetail?: Prisma.XOR<Prisma.MaintenanceDetailScalarRelationFilter, Prisma.MaintenanceDetailWhereInput>
+  calibration?: Prisma.XOR<Prisma.CalibrationNullableScalarRelationFilter, Prisma.CalibrationWhereInput> | null
 }
 
 export type ScheduleOrderByWithRelationInput = {
@@ -243,6 +244,7 @@ export type ScheduleOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   maintenanceDetail?: Prisma.MaintenanceDetailOrderByWithRelationInput
+  calibration?: Prisma.CalibrationOrderByWithRelationInput
 }
 
 export type ScheduleWhereUniqueInput = Prisma.AtLeast<{
@@ -256,6 +258,7 @@ export type ScheduleWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Schedule"> | Date | string
   maintenanceDetail?: Prisma.XOR<Prisma.MaintenanceDetailScalarRelationFilter, Prisma.MaintenanceDetailWhereInput>
+  calibration?: Prisma.XOR<Prisma.CalibrationNullableScalarRelationFilter, Prisma.CalibrationWhereInput> | null
 }, "scheduleId">
 
 export type ScheduleOrderByWithAggregationInput = {
@@ -290,6 +293,7 @@ export type ScheduleCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   maintenanceDetail: Prisma.MaintenanceDetailCreateNestedOneWithoutSchedulesInput
+  calibration?: Prisma.CalibrationCreateNestedOneWithoutScheduleInput
 }
 
 export type ScheduleUncheckedCreateInput = {
@@ -299,6 +303,7 @@ export type ScheduleUncheckedCreateInput = {
   scheduledDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  calibration?: Prisma.CalibrationUncheckedCreateNestedOneWithoutScheduleInput
 }
 
 export type ScheduleUpdateInput = {
@@ -307,6 +312,7 @@ export type ScheduleUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   maintenanceDetail?: Prisma.MaintenanceDetailUpdateOneRequiredWithoutSchedulesNestedInput
+  calibration?: Prisma.CalibrationUpdateOneWithoutScheduleNestedInput
 }
 
 export type ScheduleUncheckedUpdateInput = {
@@ -316,6 +322,7 @@ export type ScheduleUncheckedUpdateInput = {
   scheduledDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  calibration?: Prisma.CalibrationUncheckedUpdateOneWithoutScheduleNestedInput
 }
 
 export type ScheduleCreateManyInput = {
@@ -392,6 +399,11 @@ export type ScheduleSumOrderByAggregateInput = {
   round?: Prisma.SortOrder
 }
 
+export type ScheduleScalarRelationFilter = {
+  is?: Prisma.ScheduleWhereInput
+  isNot?: Prisma.ScheduleWhereInput
+}
+
 export type ScheduleCreateNestedManyWithoutMaintenanceDetailInput = {
   create?: Prisma.XOR<Prisma.ScheduleCreateWithoutMaintenanceDetailInput, Prisma.ScheduleUncheckedCreateWithoutMaintenanceDetailInput> | Prisma.ScheduleCreateWithoutMaintenanceDetailInput[] | Prisma.ScheduleUncheckedCreateWithoutMaintenanceDetailInput[]
   connectOrCreate?: Prisma.ScheduleCreateOrConnectWithoutMaintenanceDetailInput | Prisma.ScheduleCreateOrConnectWithoutMaintenanceDetailInput[]
@@ -434,11 +446,26 @@ export type ScheduleUncheckedUpdateManyWithoutMaintenanceDetailNestedInput = {
   deleteMany?: Prisma.ScheduleScalarWhereInput | Prisma.ScheduleScalarWhereInput[]
 }
 
+export type ScheduleCreateNestedOneWithoutCalibrationInput = {
+  create?: Prisma.XOR<Prisma.ScheduleCreateWithoutCalibrationInput, Prisma.ScheduleUncheckedCreateWithoutCalibrationInput>
+  connectOrCreate?: Prisma.ScheduleCreateOrConnectWithoutCalibrationInput
+  connect?: Prisma.ScheduleWhereUniqueInput
+}
+
+export type ScheduleUpdateOneRequiredWithoutCalibrationNestedInput = {
+  create?: Prisma.XOR<Prisma.ScheduleCreateWithoutCalibrationInput, Prisma.ScheduleUncheckedCreateWithoutCalibrationInput>
+  connectOrCreate?: Prisma.ScheduleCreateOrConnectWithoutCalibrationInput
+  upsert?: Prisma.ScheduleUpsertWithoutCalibrationInput
+  connect?: Prisma.ScheduleWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ScheduleUpdateToOneWithWhereWithoutCalibrationInput, Prisma.ScheduleUpdateWithoutCalibrationInput>, Prisma.ScheduleUncheckedUpdateWithoutCalibrationInput>
+}
+
 export type ScheduleCreateWithoutMaintenanceDetailInput = {
   round: number
   scheduledDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  calibration?: Prisma.CalibrationCreateNestedOneWithoutScheduleInput
 }
 
 export type ScheduleUncheckedCreateWithoutMaintenanceDetailInput = {
@@ -447,6 +474,7 @@ export type ScheduleUncheckedCreateWithoutMaintenanceDetailInput = {
   scheduledDate: Date | string
   createdAt?: Date | string
   updatedAt?: Date | string
+  calibration?: Prisma.CalibrationUncheckedCreateNestedOneWithoutScheduleInput
 }
 
 export type ScheduleCreateOrConnectWithoutMaintenanceDetailInput = {
@@ -487,6 +515,56 @@ export type ScheduleScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Schedule"> | Date | string
 }
 
+export type ScheduleCreateWithoutCalibrationInput = {
+  round: number
+  scheduledDate: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  maintenanceDetail: Prisma.MaintenanceDetailCreateNestedOneWithoutSchedulesInput
+}
+
+export type ScheduleUncheckedCreateWithoutCalibrationInput = {
+  scheduleId?: number
+  maintenanceDetailId: number
+  round: number
+  scheduledDate: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ScheduleCreateOrConnectWithoutCalibrationInput = {
+  where: Prisma.ScheduleWhereUniqueInput
+  create: Prisma.XOR<Prisma.ScheduleCreateWithoutCalibrationInput, Prisma.ScheduleUncheckedCreateWithoutCalibrationInput>
+}
+
+export type ScheduleUpsertWithoutCalibrationInput = {
+  update: Prisma.XOR<Prisma.ScheduleUpdateWithoutCalibrationInput, Prisma.ScheduleUncheckedUpdateWithoutCalibrationInput>
+  create: Prisma.XOR<Prisma.ScheduleCreateWithoutCalibrationInput, Prisma.ScheduleUncheckedCreateWithoutCalibrationInput>
+  where?: Prisma.ScheduleWhereInput
+}
+
+export type ScheduleUpdateToOneWithWhereWithoutCalibrationInput = {
+  where?: Prisma.ScheduleWhereInput
+  data: Prisma.XOR<Prisma.ScheduleUpdateWithoutCalibrationInput, Prisma.ScheduleUncheckedUpdateWithoutCalibrationInput>
+}
+
+export type ScheduleUpdateWithoutCalibrationInput = {
+  round?: Prisma.IntFieldUpdateOperationsInput | number
+  scheduledDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  maintenanceDetail?: Prisma.MaintenanceDetailUpdateOneRequiredWithoutSchedulesNestedInput
+}
+
+export type ScheduleUncheckedUpdateWithoutCalibrationInput = {
+  scheduleId?: Prisma.IntFieldUpdateOperationsInput | number
+  maintenanceDetailId?: Prisma.IntFieldUpdateOperationsInput | number
+  round?: Prisma.IntFieldUpdateOperationsInput | number
+  scheduledDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type ScheduleCreateManyMaintenanceDetailInput = {
   scheduleId?: number
   round: number
@@ -500,6 +578,7 @@ export type ScheduleUpdateWithoutMaintenanceDetailInput = {
   scheduledDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  calibration?: Prisma.CalibrationUpdateOneWithoutScheduleNestedInput
 }
 
 export type ScheduleUncheckedUpdateWithoutMaintenanceDetailInput = {
@@ -508,6 +587,7 @@ export type ScheduleUncheckedUpdateWithoutMaintenanceDetailInput = {
   scheduledDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  calibration?: Prisma.CalibrationUncheckedUpdateOneWithoutScheduleNestedInput
 }
 
 export type ScheduleUncheckedUpdateManyWithoutMaintenanceDetailInput = {
@@ -528,6 +608,7 @@ export type ScheduleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   createdAt?: boolean
   updatedAt?: boolean
   maintenanceDetail?: boolean | Prisma.MaintenanceDetailDefaultArgs<ExtArgs>
+  calibration?: boolean | Prisma.Schedule$calibrationArgs<ExtArgs>
 }, ExtArgs["result"]["schedule"]>
 
 
@@ -544,12 +625,14 @@ export type ScheduleSelectScalar = {
 export type ScheduleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"scheduleId" | "maintenanceDetailId" | "round" | "scheduledDate" | "createdAt" | "updatedAt", ExtArgs["result"]["schedule"]>
 export type ScheduleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   maintenanceDetail?: boolean | Prisma.MaintenanceDetailDefaultArgs<ExtArgs>
+  calibration?: boolean | Prisma.Schedule$calibrationArgs<ExtArgs>
 }
 
 export type $SchedulePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Schedule"
   objects: {
     maintenanceDetail: Prisma.$MaintenanceDetailPayload<ExtArgs>
+    calibration: Prisma.$CalibrationPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     scheduleId: number
@@ -899,6 +982,7 @@ readonly fields: ScheduleFieldRefs;
 export interface Prisma__ScheduleClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   maintenanceDetail<T extends Prisma.MaintenanceDetailDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MaintenanceDetailDefaultArgs<ExtArgs>>): Prisma.Prisma__MaintenanceDetailClient<runtime.Types.Result.GetResult<Prisma.$MaintenanceDetailPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  calibration<T extends Prisma.Schedule$calibrationArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Schedule$calibrationArgs<ExtArgs>>): Prisma.Prisma__CalibrationClient<runtime.Types.Result.GetResult<Prisma.$CalibrationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1279,6 +1363,25 @@ export type ScheduleDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many Schedules to delete.
    */
   limit?: number
+}
+
+/**
+ * Schedule.calibration
+ */
+export type Schedule$calibrationArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Calibration
+   */
+  select?: Prisma.CalibrationSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Calibration
+   */
+  omit?: Prisma.CalibrationOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CalibrationInclude<ExtArgs> | null
+  where?: Prisma.CalibrationWhereInput
 }
 
 /**

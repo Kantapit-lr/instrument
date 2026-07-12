@@ -1,11 +1,15 @@
 // สถานะของแผนรายปี — dropdown ตายตัว 3 ค่า
 export type RequestListStatus = "ร่าง" | "เสนอแล้ว" | "อนุมัติแล้ว";
 
+// ประเภทงานที่ต้องการต่ออุปกรณ์ — ตรงกับ enum RequirementType ใน schema
+// หมายเหตุ: ตอนนี้ระบบมีหน้าบันทึกผล (Calibration + Result*) รองรับเฉพาะ CAL เท่านั้น
+// ถ้าเลือก PM จะบันทึกไว้ในแผนได้ แต่ยังไม่มีหน้าบันทึกผล PM ให้ใช้งานจริง
+export type RequirementType = "CAL" | "PM";
+
 // รายละเอียดความต้องการต่ออุปกรณ์ 1 ชิ้นในแผน (ตรงกับ model RequestDetail)
-// requirementType ผูกไว้เป็น "CAL" คงที่ก่อนใน MVP นี้ (ระบบยังไม่มีตารางผลของ PM)
 export interface RequestDetailInput {
   registrationNumber: string;
-  requirementType: "CAL";
+  requirementType: RequirementType | "";
   frequency: string; // จำนวนครั้ง/ปี — เก็บเป็น string ตอนอยู่ในฟอร์ม แปลงเป็น Int ก่อนส่ง API
   usagePeriod: string;
   acceptableTolerance: string; // เก็บเป็น string ตอนอยู่ในฟอร์ม แปลงเป็น Decimal ก่อนส่ง API

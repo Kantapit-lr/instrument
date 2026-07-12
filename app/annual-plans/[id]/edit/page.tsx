@@ -18,7 +18,7 @@ function toFormData(raw: Record<string, unknown>): RequestListFormData {
     status: (raw.status as RequestListFormData["status"]) ?? "",
     details: rawDetails.map((d: Record<string, unknown>) => ({
       registrationNumber: String(d.registrationNumber ?? ""),
-      requirementType: "CAL",
+      requirementType: (d.requirementType as RequestListFormData["details"][number]["requirementType"]) ?? "",
       frequency: String(d.frequency ?? ""),
       usagePeriod: String(d.usagePeriod ?? ""),
       acceptableTolerance: String(d.acceptableTolerance ?? ""),

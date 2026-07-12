@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import { Prisma } from "@/prisma/generated/prisma/client";
 import { InstrumentFormData, InstrumentListItem } from "@/types/instrument";
+import { InstrumentDetailData } from "@/types/profileDetail";
 
 // select กลางที่ใช้ทั้ง search/list ทั้งหมด ดึงแค่ field ที่จำเป็นต้องโชว์ในการ์ด
 // (ไม่ดึงทั้ง record เพราะ list อาจมีหลายสิบ-ร้อยรายการ ดึงเท่าที่ใช้จริงจะเร็วกว่า)
@@ -179,6 +180,59 @@ export async function updateInstrument(
 }
 
 // ดึงข้อมูลเต็มของอุปกรณ์ 1 รายการ รวม specialCharacteristics สำหรับหน้าแก้ไข
+// ดึงข้อมูลเต็มของอุปกรณ์ 1 ชิ้น สำหรับหน้ารายละเอียด (read-only) — ต่างจาก
+// getInstrumentByRegistrationNumber ตรงที่ดึงรูปภาพ + โครงการ + กำหนดการถัดไปมาด้วย
+export async function getInstrumentDetail(registrationNumber: string): Promise<InstrumentDetailData | null> {
+  const profile = await prisma.profile.findUnique({
+    where: { registrationNumber },
+    include: {
+      project: { select: { name: true } },
+      images: { select: { profileImageId: true, fileName: true }, orderBy: { sortOrder: "asc" } },
+      specialCharacteristics: { select: { type: true, value: true, remark: true } },
+    },
+  });
+
+  if (!profile) return null;
+
+  // กำหนดการถัดไป — รอบที่ยังไม่มีผลสอบเทียบ ใกล้วันนี้ที่สุด (ในอดีตหรืออนาคตก็ได้ เรียงจากใกล้สุด)
+  const nextSchedule = await prisma.schedule.findFirst({
+    where: { maintenanceDetail: { registrationNumber }, calibration: null },
+    orderBy: { scheduledDate: "asc" },
+    select: { round: true, scheduledDate: true },
+  });
+
+  return {
+    registrationNumber: profile.registrationNumber,
+    name: profile.name,
+    type: profile.type,
+    brand: profile.brand,
+    model: profile.model,
+    serialNo: profile.serialNo,
+    size: profile.size,
+    manufacturer: profile.manufacturer,
+    vendor: profile.vendor,
+    country: profile.country,
+    price: profile.price.toString(),
+    fundingType: profile.fundingType,
+    fundingTypeRemark: profile.fundingTypeRemark,
+    location: profile.location,
+    receivedDate: profile.receivedDate.toISOString(),
+    activeDate: profile.activeDate.toISOString(),
+    initialCondition: profile.initialCondition,
+    withdrawalDocumentNo: profile.withdrawalDocumentNo,
+    recordedBy: profile.recordedBy,
+    remark: profile.remark,
+    disposed: profile.disposed,
+    disposedDate: profile.disposedDate ? profile.disposedDate.toISOString() : null,
+    projectName: profile.project.name,
+    images: profile.images,
+    specialCharacteristics: profile.specialCharacteristics,
+    nextSchedule: nextSchedule
+      ? { round: nextSchedule.round, scheduledDate: nextSchedule.scheduledDate.toISOString() }
+      : null,
+  };
+}
+
 export async function getInstrumentByRegistrationNumber(registrationNumber: string) {
   return prisma.profile.findUnique({
     where: { registrationNumber },
