@@ -156,3 +156,65 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ==========================================================================
+   5. REACT-DATEPICKER THEME OVERRIDE
+   CSS ของ react-datepicker เป็นสีขาวตายตัว ไม่รู้จักโหมดมืดของเว็บเราเลย
+   ใช้ var() ของ token เราเองแทน จะได้สลับสีถูกต้องทั้ง 2 โหมดอัตโนมัติ
+   ========================================================================== */
+.react-datepicker {
+  background: var(--color-card) !important;
+  border: 1px solid var(--color-border) !important;
+  color: var(--color-card-text) !important;
+  font-family: inherit !important;
+}
+
+.react-datepicker__header {
+  background: var(--color-card) !important;
+  border-bottom: 1px solid var(--color-border) !important;
+}
+
+.react-datepicker__day-name {
+  color: var(--color-text-muted) !important;
+}
+
+.react-datepicker__day {
+  color: var(--color-card-text) !important;
+}
+
+.react-datepicker__day:hover {
+  background: var(--color-surface-muted) !important;
+}
+
+.react-datepicker__day--outside-month {
+  color: var(--color-text-muted) !important;
+  opacity: 0.5 !important;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background: var(--color-primary) !important;
+  color: #ffffff !important;
+}
+
+.react-datepicker__day--today {
+  font-weight: 700 !important;
+}
+
+.react-datepicker__triangle::before,
+.react-datepicker__triangle::after {
+  border-bottom-color: var(--color-card) !important;
+}
+
+/* ==========================================================================
+   6. ซ่อนปุ่ม +/- ของช่อง input type="number" (native spinner) ทั้งเว็บ
+   ========================================================================== */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

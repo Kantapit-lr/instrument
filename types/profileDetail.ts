@@ -47,10 +47,12 @@ export interface HistoryItem {
   calibrationId: number | null; // มีค่า = มาจากการบันทึกผลสอบเทียบอัตโนมัติ แก้/ลบเองไม่ได้
 }
 
-// ฟอร์มเพิ่ม/แก้ไขประวัติด้วยมือ (เฉพาะรายการที่ไม่ได้ผูกกับ Calibration)
+// ฟอร์มเพิ่ม/แก้ไขประวัติด้วยมือ — เลือกได้ทุกประเภทรวมถึง CAL ด้วย (เผื่อกรอกประวัติสอบเทียบ
+// ย้อนหลังที่เกิดขึ้นก่อนมีระบบนี้ ซึ่งไม่มี Calibration record จริงมารองรับอยู่แล้ว จึงไม่ชนกับ
+// รายการ CAL ที่ผูก calibrationId ที่มาจากหน้า /calibrations โดยตรง)
 export interface HistoryFormData {
   actionDate: string;
-  actionType: Exclude<HistoryActionType, "CAL">; // การบันทึกผลสอบเทียบต้องทำผ่านหน้า /calibrations เท่านั้น
+  actionType: HistoryActionType;
   detail: string;
   operator: string;
   remark: string;

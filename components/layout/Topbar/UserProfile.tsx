@@ -3,7 +3,7 @@ import { User } from 'lucide-react';
 export default function UserProfile() {
   return (
     <div className="flex items-center gap-3">
-      <div className="text-right">
+      <div className="text-right hidden md:block">
         <p className="text-sm font-semibold text-topbar-text">Kantapit Limpisawad</p>
         <p className="text-xs text-text-muted">kantapit.lim@student.mahidol.edu</p>
       </div>

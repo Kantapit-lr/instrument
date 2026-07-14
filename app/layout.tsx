@@ -8,7 +8,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-screen flex bg-background text-foreground">
+      <body className="antialiased min-h-screen flex bg-background text-foreground overflow-x-hidden">
         <AppShell>{children}</AppShell>
       </body>
     </html>

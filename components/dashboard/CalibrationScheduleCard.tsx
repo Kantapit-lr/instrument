@@ -83,7 +83,7 @@ export function CalibrationScheduleCard({
             >
               <ChevronLeft size={16} />
             </button>
-            <h3 className="text-lg font-bold whitespace-nowrap">{title}</h3>
+            <h3 className="text-md md:text-lg font-bold whitespace-nowrap">{title}</h3>
             <button
               type="button"
               onClick={() => onGoToMonth(1)}

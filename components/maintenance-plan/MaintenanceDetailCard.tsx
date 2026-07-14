@@ -36,7 +36,7 @@ export function MaintenanceDetailCard({ detail, index, onChange }: MaintenanceDe
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <SelectInput
-          label="สถานะผู้รับจ้าง"
+          label="สถานะผู้รับดำเนินการ"
           name="status"
           value={detail.status}
           onChange={handleFieldChange}

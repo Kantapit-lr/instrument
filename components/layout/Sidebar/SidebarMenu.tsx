@@ -9,12 +9,12 @@ export default function SidebarMenu({ onNavigate }: SidebarMenuProps) {
 
   const menuItems = [
     { name: 'Dashboard', href: '/' },
-    { name: 'เพิ่มอุปกรณ์ใหม่', href: '/new-instrument' },
-    { name: 'อุปกรณ์ทั้งหมด', href: '/instruments' },
-    { name: 'จัดการโครงการ', href: '/projects' },
-    { name: 'แผนรายปี', href: '/annual-plans' },
-    { name: 'กำหนดการ', href: '/schedules' },
-    { name: 'บันทึกผลสอบเทียบ', href: '/calibrations' },
+    { name: 'New-instrument', href: '/new-instrument' },
+    { name: 'Instrument', href: '/instruments' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Annual-plans', href: '/annual-plans' },
+    { name: 'Schedules', href: '/schedules' },
+    { name: 'Calibrations', href: '/calibrations' },
   ];
 
   return (

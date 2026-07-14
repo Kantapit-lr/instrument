@@ -2,10 +2,11 @@ import Link from "next/link";
 import { HistoryListProps } from "@/types/components";
 
 const ACTION_LABEL: Record<string, string> = {
-  CAL: "สอบเทียบ",
-  PM: "บำรุงรักษาเชิงป้องกัน",
-  TRANSFER: "ย้ายสถานที่",
-  MANUAL: "บันทึกทั่วไป",
+  CAL: "CAL",
+  PM: "PM",
+  TRANSFER: "TRANSFER",
+  MANUAL: "MANUAL",
+  OTHER: "OTHER",
 };
 
 function formatDate(iso: string): string {

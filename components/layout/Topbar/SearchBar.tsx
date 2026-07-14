@@ -65,7 +65,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div ref={containerRef} className="relative w-80">
+    <div ref={containerRef} className="relative w-full max-w-[280px] md:w-80">
       <div className="flex items-center gap-2 bg-topbar px-4 py-2 rounded-xl shadow-sm border border-border">
         <Search className="w-4 h-4 text-text-muted" />
         <input

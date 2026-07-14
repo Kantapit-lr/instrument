@@ -235,7 +235,7 @@ export function CalibrationForm({
           </div>
 
           <Input label="ผู้สอบเทียบ (Operator)" name="operator" value={form.operator} onChange={handleChange} />
-          <DateInput label="วันที่สอบเทียบ (Operator)" name="operatedAt" value={form.operatedAt} onChange={handleChange} />
+          <DateInput label="วันที่ลงบันทึกสอบเทียบ (Operator)" name="operatedAt" value={form.operatedAt} onChange={handleChange} />
           <Input label="ผู้ตรวจสอบ (Reviewer)" name="reviewer" value={form.reviewer} onChange={handleChange} />
           <DateInput label="วันที่ตรวจสอบ (Reviewer)" name="reviewedAt" value={form.reviewedAt} onChange={handleChange} />
 

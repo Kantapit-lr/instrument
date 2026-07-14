@@ -10,9 +10,11 @@ import { HistoryItem, HistoryFormData, emptyHistoryForm } from "@/types/profileD
 import { SelectOption } from "@/types/instrument";
 
 const ACTION_TYPE_OPTIONS: SelectOption[] = [
+  { value: "CAL", label: "สอบเทียบ (CAL)" },
   { value: "PM", label: "บำรุงรักษาเชิงป้องกัน (PM)" },
   { value: "TRANSFER", label: "ย้ายสถานที่ (TRANSFER)" },
   { value: "MANUAL", label: "บันทึกทั่วไป (MANUAL)" },
+  { value: "OTHER", label: "อื่นๆ (OTHER)" },
 ];
 
 export function InstrumentHistoryTab({ registrationNumber }: InstrumentHistoryTabProps) {
@@ -156,7 +158,7 @@ export function InstrumentHistoryTab({ registrationNumber }: InstrumentHistoryTa
               required
             />
             <Input label="รายละเอียด" name="detail" value={form.detail} onChange={handleChange} />
-            <Input label="ผู้บันทึก" name="operator" value={form.operator} onChange={handleChange} required />
+            <Input label="ผู้ดำเนินการ  " name="operator" value={form.operator} onChange={handleChange} required />
             <div className="md:col-span-2">
               <Input label="หมายเหตุ" name="remark" value={form.remark} onChange={handleChange} />
             </div>

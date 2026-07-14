@@ -218,7 +218,7 @@ export default function InstrumentForm({
 
         {/* ── สถานที่และการติดตั้ง ───────────────────────────────── */}
         <Section title="สถานที่และการติดตั้ง">
-          <Input label="สถานที่ติดตั้ง (Location)" name="location" value={form.location} onChange={handleChange} />
+          <Input label="สถานที่ใช้งาน (Location)" name="location" value={form.location} onChange={handleChange} />
           <DateInput label="วันที่ได้รับ (Received Date)" name="receivedDate" value={form.receivedDate} onChange={handleChange} />
           <DateInput label="วันที่เริ่มใช้งาน (Active Date)" name="activeDate" value={form.activeDate} onChange={handleChange} />
           <SelectInput

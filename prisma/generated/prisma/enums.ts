@@ -13,7 +13,8 @@ export const HistoryActionType = {
   CAL: 'CAL',
   PM: 'PM',
   TRANSFER: 'TRANSFER',
-  MANUAL: 'MANUAL'
+  MANUAL: 'MANUAL',
+  OTHER: 'OTHER'
 } as const
 
 export type HistoryActionType = (typeof HistoryActionType)[keyof typeof HistoryActionType]
